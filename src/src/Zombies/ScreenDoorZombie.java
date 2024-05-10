@@ -3,12 +3,10 @@ package src.Zombies;
 import src.Zombie;
 
 public class ScreenDoorZombie extends Zombie{
-    private int screendoor_health;
+    private int screendoor_health = 180;
 
-    public ScreenDoorZombie(String name, int health, int attack_damage, int attack_speed, double move_speed,
-            boolean is_aquatic, int screendoor_health) {
-        super(name, health, attack_damage, attack_speed, move_speed, is_aquatic);
-        this.screendoor_health = screendoor_health;
+    public ScreenDoorZombie() {
+        super("Screen Door Zombie", 125, 100, 1, 5, false);
     }
 
     public int getScreen_health() {
@@ -20,6 +18,6 @@ public class ScreenDoorZombie extends Zombie{
     }
 
     public boolean getIs_stillscreen() {
-        return screendoor_health == 0;
+        return screendoor_health != 0;
     }
 }

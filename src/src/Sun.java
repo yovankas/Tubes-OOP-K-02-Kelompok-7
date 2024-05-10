@@ -1,6 +1,6 @@
 package src;
 
-public class Sun {
+public class Sun extends Thread {
     private int amount;
 
     public Sun(int amount) {
@@ -17,5 +17,13 @@ public class Sun {
 
     public void increaseSunAmount(int price) {
         amount += price;
+    }
+
+    public void run() {
+        try {
+            Thread.sleep(5000); 
+            increaseSunAmount(25); 
+        } catch (InterruptedException e) {
+        }
     }
 }

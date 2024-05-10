@@ -2,11 +2,11 @@ package src.Zombies;
 
 import src.Zombie;
 
-public class PoleVaultingZombie extends Zombie{
+public class DolphinRiderZombie extends Zombie {
     private boolean has_jump = false;
 
-    public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, 5, false);
+    public DolphinRiderZombie() {
+        super("Dolphin Rider Zombie", 175, 100, 1, 5, true);
     }
 
     public boolean getHas_jump() {

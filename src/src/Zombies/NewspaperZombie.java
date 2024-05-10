@@ -3,12 +3,10 @@ package src.Zombies;
 import src.Zombie;
 
 public class NewspaperZombie extends Zombie{
-    private int newspaper_health;
+    private int newspaper_health = 150;
 
-    public NewspaperZombie(String name, int health, int attack_damage, int attack_speed, double move_speed,
-            boolean is_aquatic, int newspaper_health) {
-        super(name, health, attack_damage, attack_speed, move_speed, is_aquatic);
-        this.newspaper_health = newspaper_health;
+    public NewspaperZombie() {
+        super("Newspaper Zombie", 125, 100, 1, 5, false);
     }
 
     public int getNewspaper_health() {
@@ -19,7 +17,7 @@ public class NewspaperZombie extends Zombie{
         newspaper_health -= attack;
     }
 
-    public boolean getIs_stillbucket() {
-        return newspaper_health == 0;
+    public boolean getIs_stillnewspap() {
+        return newspaper_health != 0;
     }
 }
