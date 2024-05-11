@@ -5,7 +5,7 @@ public class Sun implements TimeObserver {
     private boolean isTaskScheduled = false;
 
     public Sun(GameTimer timer) {
-        timer.addObserver(this);
+        timer.addObserver(this); // The Sun instance is now observing the GameTimer instance
     }
 
     public int getSun() {
