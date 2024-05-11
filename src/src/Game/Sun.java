@@ -8,15 +8,15 @@ public class Sun implements TimeObserver {
         timer.addObserver(this); // The Sun instance is now observing the GameTimer instance
     }
 
-    public int getSun() {
+    public synchronized int getSun() {
         return amount;
     }
 
-    public void decreaseSunAmount(int price) {
+    public synchronized void decreaseSunAmount(int price) {
         amount -= price;
     }
 
-    public void increaseSunAmount(int price) {
+    public synchronized void increaseSunAmount(int price) {
         amount += price;
     }
 
