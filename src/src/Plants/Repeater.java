@@ -4,7 +4,7 @@ import src.Plant;
 
 public class Repeater extends Plant{
     
-    public Repeater(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown) {
-        super(name, health, attack_damage, attack_speed, cost, range, cooldown);
+    public Repeater() {
+        super("Repeater", 100, 50, 4, 150, -1, 10);
     }
 }

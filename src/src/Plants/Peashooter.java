@@ -4,7 +4,7 @@ import src.Plant;
 
 public class Peashooter extends Plant {
     
-    public Peashooter(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown) {
-        super(name, health, attack_damage, attack_speed, cost, range, cooldown);
+    public Peashooter() {
+        super("Peashooter", 100, 25, 4, 100, -1, 10);
     }
 }
