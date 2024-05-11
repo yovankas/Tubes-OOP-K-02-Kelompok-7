@@ -20,4 +20,9 @@ public class PoleVaultingZombie extends Zombie{
     public void jumpOver() {
         // Belum diisi
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Has jump: " + getHas_jump());
+    }
 }

@@ -1,3 +1,5 @@
+package src.Game;
+
 //untuk testing yg berhubungan dengan time, sementara.
 public class TimeDriver {
     public static void main(String[] args) {

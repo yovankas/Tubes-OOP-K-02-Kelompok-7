@@ -36,4 +36,11 @@ public abstract class Creatures {
     public void setAttack_Speed(int attack) {
         this.attack_speed = attack;
     }
+
+    public void printInfo() {
+        System.out.println("Nama: " + getName());
+        System.out.println("Health: " + getHealth());
+        System.out.println("Attack Damage: " + getAttack_Damage());
+        System.out.println("Attack Speed: " + getAttack_Speed());
+    }
 }

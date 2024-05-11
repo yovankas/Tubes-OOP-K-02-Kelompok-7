@@ -20,4 +20,9 @@ public class ScreenDoorZombie extends Zombie{
     public boolean getIs_stillscreen() {
         return screendoor_health != 0;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Screen Health: " + getScreen_health());
+    }
 }

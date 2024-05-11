@@ -1,3 +1,5 @@
+package src.Game;
+
 import java.util.Random;
 
 public class Sun implements TimeObserver {

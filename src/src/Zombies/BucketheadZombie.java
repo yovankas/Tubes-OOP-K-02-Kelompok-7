@@ -20,4 +20,9 @@ public class BucketheadZombie extends Zombie{
     public boolean getIs_stillbucket() {
         return bucket_health != 0;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Bucket Health: " + getBucket_health());
+    }
 }

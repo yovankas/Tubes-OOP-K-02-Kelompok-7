@@ -20,4 +20,9 @@ public class NewspaperZombie extends Zombie{
     public boolean getIs_stillnewspap() {
         return newspaper_health != 0;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Newspaper Health: " + getNewspaper_health());
+    }
 }

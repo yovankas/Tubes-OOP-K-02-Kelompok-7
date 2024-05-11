@@ -20,4 +20,9 @@ public class ConeheadZombie extends Zombie {
     public boolean getIs_stillcone() {
         return cone_health != 0;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Cone Health: " + getCone_health());
+    }
 }

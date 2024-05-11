@@ -20,4 +20,9 @@ public class FootballZombie extends Zombie{
     public boolean getIs_stillhelmet() {
         return helmet_health != 0;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Helmet Health: " + getHelmet_health());
+    }
 }

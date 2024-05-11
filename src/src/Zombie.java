@@ -21,4 +21,10 @@ public abstract class Zombie extends Creatures {
     public void setMove_Speed(double effect) {
         move_speed = move_speed * effect;
     }
+
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Move Speed: " + getMove_Speed());
+        System.out.println("Is Aquatic: " + getIs_Aquatic());
+    }
 }
