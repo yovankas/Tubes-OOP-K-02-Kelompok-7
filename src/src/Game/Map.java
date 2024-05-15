@@ -64,12 +64,14 @@ public class Map{
 }
 
 class Tile{
-    private Pair<int, int> position;
+    private int x;
+    private int y;
     private ArrayList<Zombie> listOfZombies;
 
     //constructor
     public Tile(int x, int y){
-        this.position = new Pair<int, int>(x, y);
+        this.x = x;
+        this.y = y;
         listOfZombies = new ArrayList<Zombie>();
     }
 
@@ -78,9 +80,13 @@ class Tile{
         return listOfZombies;
     }
 
-    //get position
-    public Pair<int, int> getPosition(){
-        return this.position;
+    // getters
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 
     //add zombie
