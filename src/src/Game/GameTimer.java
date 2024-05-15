@@ -19,11 +19,6 @@ public class GameTimer {
         observers = new ArrayList<>();
     }
 
-    //get timer
-    public Timer getTimer() {
-        return timer;
-    }
-
     // Add observer to the list
     public void addObserver(TimeObserver observer) {
         observers.add(observer);
