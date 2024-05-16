@@ -15,6 +15,7 @@ public class Game {
         while(true) {
             mainMenu.printWelcomeMessage();
             String input = scanner.nextLine();
+            
             if(input.equals("Start")) {
                 Timer timer = new Timer();
                 // Create a GameTimer instance using the existing Timer

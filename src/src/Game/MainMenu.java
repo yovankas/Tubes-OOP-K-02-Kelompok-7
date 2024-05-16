@@ -10,7 +10,7 @@ import src.Zombies.*;
 
 public class MainMenu {
     private List<Zombie> listOfZombies;
-    private List<Plant> listOfPlants;
+    public List<Plant> listOfPlants;
 
     public MainMenu() {
         // Inisialisasi daftar Zombie dan Plant saat objek MainMenu dibuat
