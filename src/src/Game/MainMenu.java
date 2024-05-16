@@ -3,15 +3,19 @@ package src.Game;
 import java.util.ArrayList;
 import java.util.List;
 
+import src.Plant;
 import src.Zombie;
+import src.Plants.*;
 import src.Zombies.*;
 
 public class MainMenu {
     private List<Zombie> listOfZombies;
+    private List<Plant> listOfPlants;
 
     public MainMenu() {
         // Inisialisasi daftar Zombie dan Plant saat objek MainMenu dibuat
         this.listOfZombies = new ArrayList<>();
+        this.listOfPlants = new ArrayList<>() ;
 
         Zombie bucketheadZombie = new BucketheadZombie();
         listOfZombies.add(bucketheadZombie);
@@ -39,11 +43,39 @@ public class MainMenu {
 
         Zombie screenDoorZombie = new ScreenDoorZombie();
         listOfZombies.add(screenDoorZombie);
+
+        Plant lilypad = new Lilypad();
+        Plant magnetshroom = new Magnetshroom();
+        Plant peashooter = new Peashooter();
+        Plant repeater = new Repeater();
+        Plant snowpea = new Snowpea() ;
+        Plant squash = new Squash() ;
+        Plant sunflower = new Sunflower();
+        Plant tallnut = new Tallnut();
+        Plant twinsunflower = new TwinSunflower();
+        Plant wallnut = new Wallnut();
+        listOfPlants.add(lilypad);
+        listOfPlants.add(magnetshroom);
+        listOfPlants.add(peashooter);
+        listOfPlants.add(repeater);
+        listOfPlants.add(snowpea);
+        listOfPlants.add(squash);   
+        listOfPlants.add(sunflower);
+        listOfPlants.add(tallnut);
+        listOfPlants.add(twinsunflower);
+        listOfPlants.add(wallnut);
     }
 
     public void printListOfZombies() {
         for (Zombie zombie : listOfZombies) {
             zombie.printInfo();
+            System.out.println("\n");
+        }
+    }
+
+    public void printListOfPlants() {
+        for (Plant plant : listOfPlants) {
+            plant.printInfo();
             System.out.println("\n");
         }
     }

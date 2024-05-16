@@ -34,7 +34,7 @@ public class Game {
                 //help
             }
             else if(input.equals("Plants List")) {
-                //plants
+                mainMenu.printListOfPlants();
             }
             else if(input.equals("Zombies List")) {
                 mainMenu.printListOfZombies();
