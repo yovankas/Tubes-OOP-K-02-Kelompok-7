@@ -11,11 +11,11 @@ public class GameTimer {
     private Timer timer;
     private long startTime;
     private long elapsedTime;
-    private List<TimeObserver> observers; // list of observers
+    private List<TimeObserver> observers; // List of observers
 
-    // constructor
-    public GameTimer() {
-        timer = new Timer();
+    // Constructor accepting an existing Timer
+    public GameTimer(Timer existingTimer) {
+        this.timer = existingTimer;
         observers = new ArrayList<>();
     }
 
@@ -24,23 +24,23 @@ public class GameTimer {
         observers.add(observer);
     }
 
-    // start timer
+    // Start timer
     public void start() {
-        startTime = System.currentTimeMillis(); // get start time in ms
-        timer.schedule(new TimerTask() { //"TimerTask() {}" creating temporary class that extends TimerTask
-            @Override // override run method
+        startTime = System.currentTimeMillis(); // Get start time in ms
+        timer.schedule(new TimerTask() {
+            @Override
             public void run() {
-                long currentTime = System.currentTimeMillis(); // get current time in ms
-                elapsedTime = (currentTime - startTime) / 1000; //convert ms to seconds
+                long currentTime = System.currentTimeMillis(); // Get current time in ms
+                elapsedTime = (currentTime - startTime) / 1000; // Convert ms to seconds
                 System.out.print("\rElapsed time: " + elapsedTime + " seconds"); // "/r" to overwrite the previous line
                 for (TimeObserver observer : observers) {
-                    observer.update(elapsedTime); // notify observer
+                    observer.update(elapsedTime); // Notify observer
                 }
             }
-        }, 0, 1000); //0 delay, 1000ms interval
+        }, 0, 1000); // 0 delay, 1000ms interval
     }
 
-    // stop timer
+    // Stop timer
     public void stop() {
         if (timer != null) {
             timer.cancel();

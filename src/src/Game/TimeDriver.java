@@ -1,9 +1,11 @@
 package src.Game;
+import java.util.Timer;
 
 //untuk testing yg berhubungan dengan time, sementara.
 public class TimeDriver {
     public static void main(String[] args) {
-        GameTimer timerExample = new GameTimer();
+        Timer timer = new Timer();
+        GameTimer timerExample = new GameTimer(timer);
         timerExample.start();
 
         Sun Sun = new Sun(timerExample);
