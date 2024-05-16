@@ -1,10 +1,9 @@
 package src.Game;
 
 import src.Plant;
-import src.Plants.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.lang.Exception;
+// import java.util.List;
+// import java.lang.Exception;
 
 public class Deck {
     
@@ -31,6 +30,7 @@ public class Deck {
         if (! deck.isEmpty()) {
             for (Plant plant : deck) {
                 System.out.println(i + " "+ deck.get(i-1).getName());
+                i++ ;
             }
         } else {
             System.out.println("Deck kosong");
