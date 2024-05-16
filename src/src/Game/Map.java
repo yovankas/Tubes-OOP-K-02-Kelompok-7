@@ -2,79 +2,70 @@ package src.Game;
 
 import java.util.ArrayList;
 import java.util.List;
-import src.Zombie;
+
 import src.Plant;
-import src.Plants.*;
+import src.Zombie;
+import src.Plants.Lilypad;
 
-public class Map implements TimeObserver {
-    private int length = 6;
-    private int width = 11;
-    private List<List<? extends Tile>> map;
-    private boolean zombieAdded;
-    private GameTimer gameTimer;
 
-    // Constructor
-    public Map(GameTimer gameTimer) {
-        this.gameTimer = gameTimer;
-        map = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            List<Tile> row = new ArrayList<>();
-            for (int j = 0; j < width; j++) {
+public class Map{
+    private final int length=11;
+    private final int width=6;
+    private List<List<Tile>> map;
+
+    //constructor
+    public Map(){
+        map = new ArrayList<List<Tile>>();
+        for(int i=0; i<width; i++){
+            List<Tile> row = new ArrayList<Tile>();
+            for(int j=0; j<length; j++){
                 if (j == 0) {
-                    row.add(new BaseTile(i, j));
-                } else if (j == width - 1) {
-                    row.add(new SpawnTile(i, j));
-                } else if ((i == 2 || i == 3) && (j >= 1 && j <= width - 2)) {
-                    row.add(new WaterTile(i, j));
+                    row.add(new BaseTile(j, i));
+                } else if (j == length-1) {
+                    row.add(new SpawnTile(j, i));
+                } else if (i == 2 || i == 3) {
+                    row.add(new WaterTile(j, i));
                 } else {
-                    row.add(new GroundTile(i, j));
+                    row.add(new GroundTile(j, i));
                 }
             }
             map.add(row);
         }
     }
-    
-    // Get tile
-    public Tile getTile(int x, int y) {
-        return map.get(x).get(y);
+
+    //getter
+    public List<List<Tile>> getMap(){
+        return map;
     }
 
-    // Print map
-    public void printMap() {
-        System.out.println();
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < width; j++) {
-                if (map.get(i).get(j) instanceof GroundTile) {
-                    System.out.print("G");
-                } else if (map.get(i).get(j) instanceof WaterTile) {
-                    System.out.print("W");
-                } else if (map.get(i).get(j) instanceof BaseTile) {
-                    System.out.print("B");
-                } else if (map.get(i).get(j) instanceof SpawnTile) {
-                    System.out.print("S");
+    public int getLength(){
+        return length;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+
+    //print map
+    public void printMap(){
+        for(int i=0; i<width; i++){
+            for(int j=0; j<length; j++){
+                if(map.get(i).get(j) instanceof BaseTile){
+                    System.out.print("B ");
+                }
+                else if(map.get(i).get(j) instanceof SpawnTile){
+                    System.out.print("S ");
+                }
+                else if(map.get(i).get(j) instanceof WaterTile){
+                    System.out.print("W ");
+                }
+                else if(map.get(i).get(j) instanceof GroundTile){
+                    System.out.print("G ");
                 }
             }
             System.out.println();
         }
-        System.out.println(); // Add a new line after printing the map
-    }
-    
-    
-
-    // Implement update method of TimeObserver interface
-    @Override
-    public void update(long elapsedTime) {
-        // Check if 5 seconds have elapsed or if a zombie has been added
-        if (elapsedTime % 5 == 0 || zombieAdded) {
-            printMap();
-            zombieAdded = false; // Reset the flag after printing the map
-        }
-    }
-
-    public void addZombieToMap(int x, int y, Zombie zombie) {
-        Tile tile = getTile(x, y);
-        tile.addZombie(zombie);
-        zombieAdded = true; // Set the flag to true when a zombie is added
     }
 }
 
@@ -108,6 +99,11 @@ class Tile{
     //add zombie
     public void addZombie(Zombie zombie){
         listOfZombies.add(zombie);
+    }
+
+    //remove zombie
+    public void removeZombie(Zombie zombie){
+        listOfZombies.remove(zombie);
     }
 }
 
