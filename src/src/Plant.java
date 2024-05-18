@@ -24,5 +24,5 @@ public abstract class Plant extends Creatures {
         return cooldown ;
     }
 
-    public abstract void attack(Zombie zombie) ;
+    public abstract void attack(Zombie zombie);
 }

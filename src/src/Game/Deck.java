@@ -1,6 +1,8 @@
 package src.Game;
 
 import src.Plant;
+import src.Exception.InvalidIndexException;
+
 import java.util.ArrayList;
 // import java.util.List;
 // import java.lang.Exception;
@@ -37,9 +39,9 @@ public class Deck {
         }
     }
 
-    public void choosePlant(int i) {
+    public void choosePlant(int i) throws InvalidIndexException {
         if (i < 0 || i >= deck.size()) {
-            throw new IllegalArgumentException("Index tidak valid") ;
+            throw new InvalidIndexException() ;
         } else {
             // belum diisi
         }

@@ -11,7 +11,7 @@ public class Tile {
     public Tile(int x, int y){
         this.x = x;
         this.y = y;
-        listOfZombies = new ArrayList<Zombie>();
+        listOfZombies = new ArrayList<>();
     }
 
     //get zombie
@@ -37,4 +37,5 @@ public class Tile {
     public void removeZombie(Zombie zombie){
         listOfZombies.remove(zombie);
     }
+
 }
