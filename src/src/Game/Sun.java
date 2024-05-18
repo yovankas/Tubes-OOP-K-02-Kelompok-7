@@ -3,8 +3,8 @@ package src.Game;
 import java.util.Random;
 
 public class Sun implements TimeObserver {
-    private static int amount = 25;
-    private boolean isTaskScheduled = false;
+    private static int amount = 50;
+    private int delay=0;
 
     public Sun(GameTimer timer) {
         timer.addObserver(this); // The Sun instance is now observing the GameTimer instance
@@ -25,28 +25,16 @@ public class Sun implements TimeObserver {
     //add sun amount every 10 second
     @Override
     public void update(long elapsedTime) {
-        if ((elapsedTime/100)%2 == 0 && isTaskScheduled==false) { //daytime and no task scheduled
-            //random delay between 5-10 seconds
-            Random random = new Random(); 
-            int delay = 5000 + random.nextInt(5000);
-
-            //create new thread
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try{
-                        isTaskScheduled = true;
-                        Thread.sleep(delay); //delay
-                    } catch (InterruptedException e){
-                        Thread.currentThread().interrupt(); //IDK IF THIS NEEDED
-                        e.printStackTrace(); //IDK IF THIS NEEDED
-                    }
-                    //after delay
-                    increaseSunAmount(25); 
-                    isTaskScheduled = false;
+        if ((elapsedTime/100)%2 == 0) { //daytime
+            if (delay > 0) {
+                delay--;
+                if (delay == 0) {
+                    increaseSunAmount(25);
                 }
-            });
-            thread.start();
+            } else {
+                Random random = new Random(); 
+                delay = 5 + random.nextInt(5);
+            }
         }
         System.out.print("\rSun: " + amount); //print sun (HANYA UNTUK TESTING)
     }
