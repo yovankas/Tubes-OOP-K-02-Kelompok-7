@@ -1,6 +1,7 @@
 package src.Zombies;
 
 import src.IronZombie;
+import src.Plant;
 import src.Zombie;
 
 public class ScreenDoorZombie extends Zombie implements IronZombie{
@@ -25,5 +26,9 @@ public class ScreenDoorZombie extends Zombie implements IronZombie{
     public void printInfo() {
         super.printInfo();
         System.out.println("Screen Health: " + getIron_health());
+    }
+
+    public void attack(Plant plant) {
+        plant.setHealth(plant.getHealth() - attack_damage);
     }
 }

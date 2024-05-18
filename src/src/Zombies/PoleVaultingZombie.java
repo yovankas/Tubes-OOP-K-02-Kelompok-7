@@ -1,5 +1,6 @@
 package src.Zombies;
 
+import src.Plant;
 import src.Zombie;
 
 public class PoleVaultingZombie extends Zombie{
@@ -24,5 +25,9 @@ public class PoleVaultingZombie extends Zombie{
     public void printInfo() {
         super.printInfo();
         System.out.println("Has jump: " + getHas_jump());
+    }
+
+    public void attack(Plant plant) {
+        plant.setHealth(plant.getHealth() - attack_damage);
     }
 }

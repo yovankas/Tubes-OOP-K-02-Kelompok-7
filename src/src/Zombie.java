@@ -28,5 +28,5 @@ public abstract class Zombie extends Creatures {
         System.out.println("Is Aquatic: " + getIs_Aquatic());
     }
 
-//    public abstract void attack(Plant plant) ;
+   public abstract void attack(Plant plant) ;
 }

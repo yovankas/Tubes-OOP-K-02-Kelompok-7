@@ -1,5 +1,6 @@
 package src.Zombies;
 
+import src.Plant;
 import src.Zombie;
 
 public class NewspaperZombie extends Zombie{
@@ -24,5 +25,9 @@ public class NewspaperZombie extends Zombie{
     public void printInfo() {
         super.printInfo();
         System.out.println("Newspaper Health: " + getNewspaper_health());
+    }
+
+    public void attack(Plant plant) {
+        plant.setHealth(plant.getHealth() - attack_damage);
     }
 }
