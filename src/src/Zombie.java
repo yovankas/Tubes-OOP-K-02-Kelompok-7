@@ -1,5 +1,6 @@
 package src;
 
+import src.Game.visitor;
 public abstract class Zombie extends Creatures {
     private double move_speed;
     private boolean is_aquatic;
@@ -33,6 +34,7 @@ public abstract class Zombie extends Creatures {
         this.lastMoveTime = lastMoveTime;
     }
 
+    @Override
     public void printInfo() {
         super.printInfo();
         System.out.println("Move Speed: " + getMove_Speed());
@@ -40,4 +42,9 @@ public abstract class Zombie extends Creatures {
     }
 
    public abstract void attack(Plant plant) ;
+
+@Override
+   public void accept(visitor visitor) {
+        visitor.visitZombie(this);
+    }
 }

@@ -1,6 +1,9 @@
 package src;
 
-public abstract class Creatures {
+import src.Game.visitable;
+import src.Game.visitor;
+
+public abstract class Creatures implements  visitable {
     private String name;
     private int health;
     protected int attack_damage;
@@ -37,6 +40,10 @@ public abstract class Creatures {
         this.attack_speed = attack;
     }
 
+    public boolean isDead() {
+        return health <= 0;
+    }
+
     public void printInfo() {
         System.out.println("Nama: " + getName());
         System.out.println("Health: " + getHealth());
@@ -44,5 +51,6 @@ public abstract class Creatures {
         System.out.println("Attack Speed: " + getAttack_Speed());
     }
 
- 
+    @Override
+    public abstract void accept(visitor visitor);
 }

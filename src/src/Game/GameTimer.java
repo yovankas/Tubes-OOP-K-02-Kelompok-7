@@ -13,12 +13,11 @@ public class GameTimer {
     private long elapsedTime;
     private List<TimeObserver> observers; // List of observers
 
-    // Constructor accepting an existing Timer
-    public GameTimer(Timer existingTimer) {
-        this.timer = existingTimer;
+    // Constructor initializing a new Timer
+    public GameTimer() {
+        this.timer = new Timer();
         observers = new ArrayList<>();
     }
-
     // Add observer to the list
     public void addObserver(TimeObserver observer) {
         observers.add(observer);

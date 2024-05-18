@@ -1,5 +1,7 @@
 package src;
 
+import src.Game.visitor;
+
 public abstract class Plant extends Creatures {
     private int range ;
     private int cooldown ;
@@ -25,4 +27,9 @@ public abstract class Plant extends Creatures {
     }
 
     public abstract void attack(Zombie zombie) ;
+
+    @Override
+    public void accept(visitor visitor) {
+        visitor.visitPlant(this);
+    }
 }

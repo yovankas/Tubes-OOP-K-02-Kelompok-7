@@ -182,6 +182,11 @@ public class Map implements TimeObserver {
         }
     }
 
+    //getMap
+    public List<List<Tile>> getMap() {
+        return map;
+    }
+
     @Override
     public void update(long elapsedTime) {
         if (elapsedTime - lastSpawnTime >= 1) {
