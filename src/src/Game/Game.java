@@ -17,18 +17,7 @@ public class Game {
             String input = scanner.nextLine();
             
             if(input.equals("Start")) {
-                Timer timer = new Timer();
-                // Create a GameTimer instance using the existing Timer
-                GameTimer gameTimer = new GameTimer(timer);
-                // Create a Map instance and pass the GameTimer instance
-                Map map = new Map(gameTimer);
-                // Register Map as an observer to GameTimer
-                gameTimer.addObserver(map);
-                // Start the timer
-                gameTimer.start();
-                Zombie zombie = new NormalZombie(); // Create a new Zombie object
-                map.addZombieToMap(0, 0, zombie);
-
+                start();
                 break;
             }
             else if(input.equals("Help")) {
@@ -47,5 +36,9 @@ public class Game {
         }
         
         scanner.close();
+    }
+
+    public static void start() {
+        
     }
 }

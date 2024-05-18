@@ -2,16 +2,23 @@ package src.Game;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import src.Plant;
 import src.Zombie;
 import src.Plants.Lilypad;
-
+import src.Zombies.*;
 
 public class Map{
     private final int length=11;
     private final int width=6;
     private List<List<Tile>> map;
+    private ScheduledExecutorService executor;
+    private static final int MAX_ZOMBIES = 10;
+    private static final double SPAWN_PROBABILITY = 0.3;
+    private Random random;
 
     //constructor
     public Map(){
@@ -31,6 +38,8 @@ public class Map{
             }
             map.add(row);
         }
+        executor = Executors.newScheduledThreadPool(10); // Increase the pool size to handle multiple zombies
+        random = new Random();
     }
 
     //getter
@@ -46,30 +55,160 @@ public class Map{
         return width;
     }
 
-
-    //print map
-    public void printMap(){
-        for(int i=0; i<width; i++){
-            for(int j=0; j<length; j++){
-                if(map.get(i).get(j) instanceof BaseTile){
-                    System.out.print("B ");
-                }
-                else if(map.get(i).get(j) instanceof SpawnTile){
-                    System.out.print("S ");
-                }
-                else if(map.get(i).get(j) instanceof WaterTile){
-                    System.out.print("W ");
-                }
-                else if(map.get(i).get(j) instanceof GroundTile){
-                    System.out.print("G ");
-                }
+     // Add Zombie to SpawnTile
+    public void addZombieToSpawn(Zombie zombie, int row) {
+        Tile tile = map.get(row).get(length - 1); // SpawnTile is at the end of the row
+        if (tile instanceof SpawnTile) {
+            if ((!zombie.getIs_Aquatic() && !(tile instanceof WaterTile)) ||
+                    (zombie.getIs_Aquatic() && (tile instanceof WaterTile))) {
+                tile.addZombie(zombie);
+                scheduleZombieMovement(zombie, tile);
             }
-            System.out.println();
         }
     }
+
+    // Schedule zombie movement
+    private void scheduleZombieMovement(Zombie zombie, Tile currentTile) {
+        Runnable moveTask = new Runnable() {
+            private Tile tile = currentTile;
+
+            @Override
+            public void run() {
+                synchronized (map) {
+                    List<Zombie> zombiesToMove = tile.getZombie();
+                    if (zombiesToMove.contains(zombie)) {
+                        int x = tile.getX();
+                        int y = tile.getY();
+                        tile.removeZombie(zombie);
+
+                        if (x > 0) { // Move zombie left if not at the edge
+                            Tile nextTile = map.get(y).get(x - 1);
+                            if ((!(zombie.getIs_Aquatic()) && !(nextTile instanceof WaterTile)) ||
+                                (zombie.getIs_Aquatic() && nextTile instanceof WaterTile)) {
+                                nextTile.addZombie(zombie);
+                                tile = nextTile; // Update current tile
+                            } else {
+                                tile.addZombie(zombie); // Put the zombie back if it can't move to the next tile
+                            }
+                        } else {
+                            tile.addZombie(zombie); // Put the zombie back if it can't move left --- NANTI DIBUAT EXCEPTION GAME SELESAI
+                        }
+                    }
+                }
+            }
+        };
+
+        executor.scheduleAtFixedRate(moveTask, 0, (long)zombie.getMove_Speed(), TimeUnit.SECONDS);
+    }
+
+    // Print Map
+    public void printMap() {
+        synchronized (map) {
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < length; j++) {
+                    if (map.get(i).get(j) instanceof BaseTile) {
+                        System.out.print("B ");
+                    } else if (map.get(i).get(j) instanceof SpawnTile) {
+                        System.out.print("S ");
+                    } else if (map.get(i).get(j) instanceof WaterTile) {
+                        System.out.print("W ");
+                    } else if (map.get(i).get(j) instanceof GroundTile) {
+                        System.out.print("G ");
+                    }
+                    if (!map.get(i).get(j).getZombie().isEmpty()) {
+                        System.out.print("Z ");
+                    } else {
+                        System.out.print(". "); // Empty tile representation
+                    }
+                }
+                System.out.println();
+            }
+            System.out.println("\n");
+        }
+    }
+
+    // Spawn zombie based on probability
+    private void spawnZombies() {
+        int totalZombies = getTotalZombies();
+        if (totalZombies >= MAX_ZOMBIES) return; // -- Exception zombie udah max
+
+        for (int i = 0; i < width; i++) {
+            if (random.nextDouble() < SPAWN_PROBABILITY) {
+                Zombie zombie = createRandomZombie(i);
+                if (zombie != null) {
+                    addZombieToSpawn(zombie, i);
+                }
+            }
+        }
+    }
+
+    // Create random zombie
+    private Zombie createRandomZombie(int row) {
+        int zombieType = random.nextInt(10);
+        Zombie zombie = null;
+        switch (zombieType) {
+            case 0: zombie = new NormalZombie(); break;
+            case 1: zombie = new ConeheadZombie(); break;
+            case 2: zombie = new BucketheadZombie(); break;
+            case 3: zombie = new DuckyTubeZombie(); break;
+            case 4: zombie = new ScreenDoorZombie(); break;
+            case 5: zombie = new FootballZombie(); break;
+            case 6: zombie = new PoleVaultingZombie(); break;
+            case 7: zombie = new NewspaperZombie(); break;
+            case 8: zombie = new DolphinRiderZombie(); break;
+            default: zombie = new NormalZombie(); // Fallback to NormalZombie
+        }
+        // Ensure the zombie type matches the row type
+        if ((row == 2 || row == 3) && !zombie.getIs_Aquatic()) {
+            // If row is water and zombie is not aquatic, create an aquatic zombie
+            int aquaticType = random.nextInt(2);
+            if (aquaticType == 0) {
+                zombie = new DolphinRiderZombie();
+            } else {
+                zombie = new DuckyTubeZombie();
+            }
+        } else if ((row != 2 && row != 3) && zombie.getIs_Aquatic()) {
+            // If row is not water and zombie is aquatic, create a non-aquatic zombie
+            zombie = new NormalZombie();
+        }
+
+        return zombie;
+    }
+
+    // Get total zombies on the map
+    private int getTotalZombies() {
+        int count = 0;
+        for (List<Tile> row : map) {
+            for (Tile tile : row) {
+                count += tile.getZombie().size();
+            }
+        }
+        return count;
+    }
     public static void main(String[] args) {
-        Map x = new Map();
-        x.printMap();
+        Map map = new Map();
+        
+        ScheduledExecutorService printExecutor = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService spawnExecutor = Executors.newSingleThreadScheduledExecutor();
+
+        // Print map every 5 seconds
+        Runnable printTask = new Runnable() {
+            @Override
+            public void run() {
+                map.printMap();
+            }
+        };
+
+        // Spawn zombies every second
+        Runnable spawnTask = new Runnable() {
+            @Override
+            public void run() {
+                map.spawnZombies();
+            }
+        };
+
+        printExecutor.scheduleAtFixedRate(printTask, 0, 5, TimeUnit.SECONDS);
+        spawnExecutor.scheduleAtFixedRate(spawnTask, 0, 1, TimeUnit.SECONDS);
     }
 }
 
