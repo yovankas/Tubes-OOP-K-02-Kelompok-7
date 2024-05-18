@@ -1,28 +1,29 @@
 package src.Zombies;
 
+import src.IronZombie;
 import src.Zombie;
 
-public class ScreenDoorZombie extends Zombie{
-    private int screendoor_health = 180;
+public class ScreenDoorZombie extends Zombie implements IronZombie{
+    private int iron_health = 180;
 
     public ScreenDoorZombie() {
         super("Screen Door Zombie", 125, 100, 1, 5, false);
     }
 
-    public int getScreen_health() {
-        return screendoor_health;
+    public int getIron_health() {
+        return iron_health;
     }
 
-    public void setScreen_health(int attack) {
-        screendoor_health -= attack;
+    public void setIron_health(int iron_health) {
+        this.iron_health = iron_health ;
     }
 
-    public boolean getIs_stillscreen() {
-        return screendoor_health != 0;
+    public boolean stillHasIron() {
+        return iron_health > 0 ;
     }
 
     public void printInfo() {
         super.printInfo();
-        System.out.println("Screen Health: " + getScreen_health());
+        System.out.println("Screen Health: " + getIron_health());
     }
 }

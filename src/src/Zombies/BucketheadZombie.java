@@ -1,28 +1,31 @@
 package src.Zombies;
 
+import src.IronZombie;
 import src.Zombie;
 
-public class BucketheadZombie extends Zombie{
-    private int bucket_health = 175;
+public class BucketheadZombie extends Zombie implements IronZombie{
+    private int iron_health = 175;
 
     public BucketheadZombie() {
         super("Buckethead Zombie", 300, 100, 1, 5, false);
     }
 
-    public int getBucket_health() {
-        return bucket_health;
+    public int getIron_health() {
+        return iron_health;
     }
 
-    public void setBucket_health(int attack) {
-        bucket_health -= attack;
+    public void setIron_health(int iron_health) {
+        this.iron_health = iron_health ;
     }
 
-    public boolean getIs_stillbucket() {
-        return bucket_health != 0;
+    public boolean stillHasIron() {
+        return iron_health > 0 ;
     }
 
     public void printInfo() {
         super.printInfo();
-        System.out.println("Bucket Health: " + getBucket_health());
+        System.out.println("Bucket Health: " + getIron_health());
     }
+
+
 }

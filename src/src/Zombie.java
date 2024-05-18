@@ -27,4 +27,6 @@ public abstract class Zombie extends Creatures {
         System.out.println("Move Speed: " + getMove_Speed());
         System.out.println("Is Aquatic: " + getIs_Aquatic());
     }
+
+//    public abstract void attack(Plant plant) ;
 }

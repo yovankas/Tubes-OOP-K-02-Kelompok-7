@@ -1,28 +1,29 @@
 package src.Zombies;
 
+import src.IronZombie;
 import src.Zombie;
 
-public class ConeheadZombie extends Zombie {
-    private int cone_health = 125;
+public class ConeheadZombie extends Zombie implements IronZombie{
+    private int iron_health = 125;
 
     public ConeheadZombie() {
         super("Conehead Zombie", 125, 100, 1, 5, false);
     }
 
-    public int getCone_health() {
-        return cone_health;
+    public int getIron_health() {
+        return iron_health;
     }
 
-    public void setBucket_health(int attack) {
-        cone_health -= attack;
+    public void setIron_health(int iron_health) {
+        this.iron_health = iron_health ;
     }
 
-    public boolean getIs_stillcone() {
-        return cone_health != 0;
+    public boolean stillHasIron() {
+        return iron_health > 0 ;
     }
 
     public void printInfo() {
         super.printInfo();
-        System.out.println("Cone Health: " + getCone_health());
+        System.out.println("Cone Health: " + getIron_health());
     }
 }

@@ -1,6 +1,10 @@
 package src.Plants;
 
+import src.IronZombie;
 import src.Plant;
+import src.Zombie;
+import src.Zombies.*;
+
 
 public class Peashooter extends Plant {
     
@@ -15,5 +19,34 @@ public class Peashooter extends Plant {
         System.out.println("Cooldown: "+ getCooldown());
     }
 
+    public void attack(Zombie zombie) {
+        if (zombie instanceof BucketheadZombie || zombie instanceof ConeheadZombie || zombie instanceof FootballZombie || zombie instanceof ScreenDoorZombie){
+            if (((IronZombie) zombie).stillHasIron()) {
+                ((IronZombie) zombie).setIron_health(((IronZombie) zombie).getIron_health() - attack_damage);
+            } else {
+                zombie.setHealth(zombie.getHealth() - attack_damage);
+            }
+        } else {
+        zombie.setHealth(zombie.getHealth() - attack_damage);
+        }
+    } 
 
+    // public static void main(String[] args) {
+    //     Peashooter x = new Peashooter() ;
+    //     NormalZombie y = new NormalZombie();
+    // //    System.out.println(y.getHealth());
+    //     x.attack(y);
+    // //    System.out.println(y.getHealth());
+    //     BucketheadZombie a = new BucketheadZombie() ;
+    //     System.out.println(a.getIron_health());
+    //     System.out.println(a.stillHasIron());
+    //     x.attack(a);
+    //     System.out.println(a.getIron_health());
+    //     System.out.println(a.getHealth());
+    //     a.setIron_health(25);
+    //     x.attack(a);
+    //     a.printInfo();
+    //     x.attack(a);
+    //     a.printInfo();
+    // }
 }

@@ -1,6 +1,9 @@
 package src.Plants;
 
+import src.IronZombie;
 import src.Plant;
+import src.Zombie;
+import src.Zombies.*;
 
 public class Sunflower extends Plant {
    
@@ -15,4 +18,15 @@ public class Sunflower extends Plant {
         System.out.println("Cooldown: "+ getCooldown());
     }
  
+    public void attack(Zombie zombie) {
+        if (zombie instanceof BucketheadZombie || zombie instanceof ConeheadZombie || zombie instanceof FootballZombie || zombie instanceof ScreenDoorZombie){
+            if (((IronZombie) zombie).stillHasIron()) {
+                ((IronZombie) zombie).setIron_health(((IronZombie) zombie).getIron_health() - attack_damage);
+            } else {
+                zombie.setHealth(zombie.getHealth() - attack_damage);
+            }
+        } else {
+        zombie.setHealth(zombie.getHealth() - attack_damage);
+        }
+    } 
 }

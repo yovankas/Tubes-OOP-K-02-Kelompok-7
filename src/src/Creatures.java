@@ -3,7 +3,7 @@ package src;
 public abstract class Creatures {
     private String name;
     private int health;
-    private int attack_damage;
+    protected int attack_damage;
     private int attack_speed;
 
     public Creatures(String name, int health, int attack_damage, int attack_speed){
@@ -29,8 +29,8 @@ public abstract class Creatures {
         return attack_speed;
     }
 
-    public void setHealth(int attack) {
-        health -= attack;
+    public void setHealth(int health) {
+        this.health = health ;
     }
 
     public void setAttack_Speed(int attack) {
@@ -43,4 +43,6 @@ public abstract class Creatures {
         System.out.println("Attack Damage: " + getAttack_Damage());
         System.out.println("Attack Speed: " + getAttack_Speed());
     }
+
+ 
 }

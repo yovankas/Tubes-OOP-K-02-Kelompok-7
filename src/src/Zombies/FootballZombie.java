@@ -1,28 +1,29 @@
 package src.Zombies;
 
+import src.IronZombie;
 import src.Zombie;
 
-public class FootballZombie extends Zombie{
-    private int helmet_health = 140;
+public class FootballZombie extends Zombie implements IronZombie{
+    private int iron_health = 140;
 
     public FootballZombie() {
         super("Football Zombie", 125, 100, 1, 5, false);
     }
 
-    public int getHelmet_health() {
-        return helmet_health;
+    public int getIron_health() {
+        return iron_health;
     }
 
-    public void setHelmet_health(int attack) {
-        helmet_health -= attack;
+    public void setIron_health(int iron_health) {
+        this.iron_health = iron_health ;
     }
 
-    public boolean getIs_stillhelmet() {
-        return helmet_health != 0;
+    public boolean stillHasIron() {
+        return iron_health > 0 ;
     }
 
     public void printInfo() {
         super.printInfo();
-        System.out.println("Helmet Health: " + getHelmet_health());
+        System.out.println("Helmet Health: " + getIron_health());
     }
 }
