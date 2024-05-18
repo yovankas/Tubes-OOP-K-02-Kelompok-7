@@ -1,10 +1,8 @@
 package src.Game;
 
 import java.util.Scanner;
-import java.util.Timer;
 
-import src.Zombie;
-import src.Zombies.NormalZombie;
+import src.Exception.WrongCommandException;
 
 public class Game {
     //main
@@ -12,29 +10,31 @@ public class Game {
         MainMenu mainMenu = new MainMenu();
         Scanner scanner = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             mainMenu.printWelcomeMessage();
             String input = scanner.nextLine();
-            
-            if(input.equals("Start")) {
-                start();
-                break;
-            }
-            else if(input.equals("Help")) {
-                //help
-            }
-            else if(input.equals("Plants List")) {
-                mainMenu.printListOfPlants();
-            }
-            else if(input.equals("Zombies List")) {
-                mainMenu.printListOfZombies();
-            }
-            else if(input.equals("Exit")) {
-                mainMenu.printExit();
-                break;
+
+            try {
+                if (input.equals("Start")) {
+                    start();
+                    break;
+                } else if (input.equals("Help")) {
+                    //help
+                } else if (input.equals("Plants List")) {
+                    mainMenu.printListOfPlants();
+                } else if (input.equals("Zombies List")) {
+                    mainMenu.printListOfZombies();
+                } else if (input.equals("Exit")) {
+                    mainMenu.printExit();
+                    break;
+                } else {
+                    throw new WrongCommandException();
+                }
+            } catch (WrongCommandException e) {
+                System.out.println(e.getMessage());
             }
         }
-        
+
         scanner.close();
     }
 

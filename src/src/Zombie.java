@@ -3,6 +3,7 @@ package src;
 public abstract class Zombie extends Creatures {
     private double move_speed;
     private boolean is_aquatic;
+    private long lastMoveTime;
 
     public Zombie(String name, int health, int attack_damage, int attack_speed, double move_speed, boolean is_aquatic){
         super(name, health, attack_damage, attack_speed);
@@ -20,6 +21,16 @@ public abstract class Zombie extends Creatures {
 
     public void setMove_Speed(double effect) {
         move_speed = move_speed * effect;
+    }
+
+    // Getter for lastMoveTime
+    public long getLastMoveTime() {
+        return lastMoveTime;
+    }
+
+    // Setter for lastMoveTime
+    public void setLastMoveTime(long lastMoveTime) {
+        this.lastMoveTime = lastMoveTime;
     }
 
     public void printInfo() {
