@@ -8,7 +8,7 @@ public class FootballZombie extends Zombie implements IronZombie{
     private int iron_health = 140;
 
     public FootballZombie() {
-        super("Football Zombie", 125, 100, 1, 5, false);
+        super("Football Zombie", 125, 100, 1, 10, false);
     }
 
     public int getIron_health() {

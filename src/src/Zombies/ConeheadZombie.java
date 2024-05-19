@@ -8,7 +8,7 @@ public class ConeheadZombie extends Zombie implements IronZombie{
     private int iron_health = 125;
 
     public ConeheadZombie() {
-        super("Conehead Zombie", 125, 100, 1, 5, false);
+        super("Conehead Zombie", 125, 100, 1, 10, false);
     }
 
     public int getIron_health() {

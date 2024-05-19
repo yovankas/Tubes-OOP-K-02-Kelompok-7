@@ -9,7 +9,7 @@ public class BucketheadZombie extends Zombie implements IronZombie{
     private int iron_health = 175;
 
     public BucketheadZombie() {
-        super("Buckethead Zombie", 300, 100, 1, 5, false);
+        super("Buckethead Zombie", 300, 100, 1, 10, false);
     }
 
     public int getIron_health() {

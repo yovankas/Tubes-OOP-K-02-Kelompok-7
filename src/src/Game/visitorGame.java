@@ -16,5 +16,17 @@ public class visitorGame implements visitor {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'visitZombie'");
     }
+
+    @Override
+    public void visit(Plant plant) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visit'");
+    }
+
+    @Override
+    public void visit(Zombie zombie) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visit'");
+    }
     
 }

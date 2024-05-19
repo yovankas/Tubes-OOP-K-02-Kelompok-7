@@ -7,7 +7,7 @@ public class NewspaperZombie extends Zombie{
     private int newspaper_health = 150;
 
     public NewspaperZombie() {
-        super("Newspaper Zombie", 125, 100, 1, 5, false);
+        super("Newspaper Zombie", 125, 100, 1, 10, false);
     }
 
     public int getNewspaper_health() {

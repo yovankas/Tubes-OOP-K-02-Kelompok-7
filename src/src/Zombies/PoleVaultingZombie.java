@@ -7,7 +7,7 @@ public class PoleVaultingZombie extends Zombie{
     private boolean has_jump = false;
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, 5, false);
+        super("Pole Vaulting Zombie", 175, 100, 1, 10, false);
     }
 
     public boolean getHas_jump() {

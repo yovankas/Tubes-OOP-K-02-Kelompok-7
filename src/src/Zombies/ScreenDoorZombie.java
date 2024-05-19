@@ -8,7 +8,7 @@ public class ScreenDoorZombie extends Zombie implements IronZombie{
     private int iron_health = 180;
 
     public ScreenDoorZombie() {
-        super("Screen Door Zombie", 125, 100, 1, 5, false);
+        super("Screen Door Zombie", 125, 100, 1, 10, false);
     }
 
     public int getIron_health() {

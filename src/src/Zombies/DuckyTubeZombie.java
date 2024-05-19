@@ -6,7 +6,7 @@ import src.Zombie;
 public class DuckyTubeZombie extends Zombie{
 
     public DuckyTubeZombie() {
-        super("Ducky Tube Zombie", 100, 100, 1, 5, true);
+        super("Ducky Tube Zombie", 100, 100, 1, 10, true);
     }
 
     public void attack(Plant plant) {

@@ -45,8 +45,12 @@ public class Inventory {
         return inventory ;
     }
 
+    public Deck getDeck() {
+        return deck ;
+    }
+
     public void swapInventory (int x, int y)   {
-        if (x < 0 || x > inventory.size() || y < 0 || y > inventory.size()) {
+        if (x < 1 || x > inventory.size() || y < 1 || y > inventory.size()) {
             System.out.println("Indeks tidak valid");
         } else {
             Plant temp =  inventory.get(x-1) ;
@@ -56,45 +60,61 @@ public class Inventory {
     }
 
     public void swapDeck (int x, int y) throws InvalidIndexException {
-        if (x < 0 || x > deck.getDeck().size() || y < 0 || y > deck.getDeck().size()) {
+        if (x < 1 || x > deck.getDeck().length || y < 1 || y > deck.getDeck().length) {
             throw new InvalidIndexException();
         } else {
-            Plant temp = deck.getDeck().get(x);
-            deck.getDeck().set(x, deck.getDeck().get(y));
-            deck.getDeck().set(y, temp);
+            Plant temp = deck.getDeck()[x-1];
+            deck.getDeck()[x-1] = deck.getDeck()[y-1];
+            deck.getDeck()[y-1] = temp;
         }
     }
 
     public void deletePlantFromDeck (int index) throws InvalidIndexException{
-        if (index < 0 || index > deck.getDeck().size()) {
+        if (index < 1 || index > deck.getDeck().length) {
             throw new InvalidIndexException();
         }
-        else if (deck.getDeck().isEmpty()){
+        else if (deck.isEmpty()){
             System.out.println("Deck kosong");
         }
-        else if (deck.getDeck().get(index) == null){
+        else if (deck.getDeck()[index - 1] == null){
             System.out.println("Tidak ada tanaman di slot deck");
         }
-        System.out.println(deck.getDeck().get(index).getName() + " sudah dihapus dari deck");
-        deck.getDeck().remove(index);        
+        else {
+            System.out.println(deck.getDeck()[index - 1].getName() + " sudah dihapus dari Deck");
+            deck.getDeck()[index - 1] = null;
+            deck.decreasePlantCount();   
+        }     
     }
 
     public void deletePlant (Plant plant){
-        deck.getDeck().remove(plant);
+        for (int i = 0; i < deck.getDeck().length; i++) {
+            if (deck.getDeck()[i] == plant) {
+                deck.getDeck()[i] = null;
+                deck.decreasePlantCount();
+                return;
+            }
+        }
     }
 
     public void addPlantToDeck (int i) throws Exception{
-        if (i < 0 || i > inventory.size()) {
+        if (i < 1 || i > inventory.size()) {
             throw new InvalidIndexException();
         }
-        else if (deck.getDeck().size() >= 6){
+        else if (deck.isDeckFull()){
             throw new FullDeckException();
         }
-        else if (deck.getDeck().contains(inventory.get(i-1))){
+        else if (deck.containsPlant(inventory.get(i - 1))){
             throw new PlantAlreadyInDeckException();
         }
-        System.out.println(inventory.get(i-1).getName() + " ditambahkan ke Deck");
-        deck.getDeck().add(inventory.get(i-1));
+        for (int j = 0; j < deck.getDeck().length; j++) {
+            if (deck.getDeck()[j] == null) {
+                deck.getDeck()[j] = inventory.get(i - 1);
+                deck.increasePlantCount();
+                System.out.println(inventory.get(i - 1).getName() + " ditambahkan ke Deck");
+                return;
+            }
+        }
+
     }
 
     public void showInventory (){

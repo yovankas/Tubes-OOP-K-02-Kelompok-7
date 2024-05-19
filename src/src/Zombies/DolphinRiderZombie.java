@@ -7,7 +7,7 @@ public class DolphinRiderZombie extends Zombie {
     private boolean has_jump = false;
 
     public DolphinRiderZombie() {
-        super("Dolphin Rider Zombie", 175, 100, 1, 5, true);
+        super("Dolphin Rider Zombie", 175, 100, 1, 10, true);
     }
 
     public boolean getHas_jump() {
