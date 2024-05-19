@@ -6,6 +6,7 @@ import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
 import src.Plants.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 // import java.util.Scanner;
 import java.lang.Exception;
 
@@ -126,7 +127,53 @@ public class Inventory {
         }
     }
 
+    public void changeDeck() throws InvalidIndexException, PlantAlreadyInDeckException {
+        Scanner scanner = new Scanner(System.in);
 
+        while (true) {
+            getDeck().showDeck();
+            System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
+            int deckIndex = scanner.nextInt();
+            scanner.nextLine(); // Clear the newline left by nextInt()
+            
+            showInventory();
+            System.out.println("Masukkan indeks tanaman di Inventory yang ingin dimasukkan: ");
+            int inventoryIndex = scanner.nextInt();
+            scanner.nextLine(); // Clear the newline left by nextInt()
+
+            try {
+                if (deckIndex < 1 || deckIndex > deck.getDeck().length) {
+                    throw new InvalidIndexException();
+                }
+
+                if (inventoryIndex < 1 || inventoryIndex > inventory.size()) {
+                    throw new InvalidIndexException();
+                }
+
+                Plant plantToRemove = deck.getDeck()[deckIndex - 1];
+                if (plantToRemove == null) {
+                    System.out.println("Tidak ada tanaman di slot deck ini");
+                    continue;
+                }
+
+                Plant plantToAdd = inventory.get(inventoryIndex - 1);
+                if (deck.containsPlant(plantToAdd)) {
+                    throw new PlantAlreadyInDeckException();
+                }
+
+                deck.getDeck()[deckIndex - 1] = plantToAdd;
+                System.out.println(plantToRemove.getName() + " sudah dihapus dari Deck dan " + plantToAdd.getName() + " ditambahkan ke Deck");
+                break;
+
+            } catch (InvalidIndexException e) {
+                throw new InvalidIndexException();
+            } catch (PlantAlreadyInDeckException e) {
+                throw new PlantAlreadyInDeckException();
+            }
+        }
+
+        scanner.close();
+    }
 
     // public static void main(String[] args) {
     //     Inventory inventory = new Inventory() ;
