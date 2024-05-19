@@ -37,6 +37,7 @@ public class NewspaperZombie extends Zombie{
             setshield(health);
             if (shield <= 0) {
                 setHas_Iron(false);
+                setMove_Speed(2);
             }
         } else {
             super.setHealth(health);
