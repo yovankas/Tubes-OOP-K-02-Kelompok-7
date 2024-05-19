@@ -10,6 +10,7 @@ public class Lilypad extends Plant {
         super("Lilypad", 100, 0, 0, 25, 0, 10);
     }
 
+    @Override
     public void printInfo() {
         super.printInfo();
         System.out.println("cost: "+ getCost());
@@ -17,6 +18,7 @@ public class Lilypad extends Plant {
         System.out.println("Cooldown: "+ getCooldown());
     }
 
+    @Override
     public void attack(Zombie zombie) {
         if (plant != null) {
             plant.attack(zombie);

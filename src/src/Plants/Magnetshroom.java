@@ -1,9 +1,7 @@
 package src.Plants;
 
-import src.IronZombie;
 import src.Plant;
 import src.Zombie;
-import src.Zombies.*;
 
 public class Magnetshroom extends Plant{
  
@@ -11,6 +9,7 @@ public class Magnetshroom extends Plant{
         super("Magnetshroom", 100, 0, 0, 25, -1, 10);
     }
 
+    @Override
     public void printInfo() {
         super.printInfo();
         System.out.println("cost: "+ getCost());
@@ -18,11 +17,10 @@ public class Magnetshroom extends Plant{
         System.out.println("Cooldown: "+ getCooldown());
     }
 
+    @Override
     public void attack(Zombie zombie) {
-        if (zombie instanceof BucketheadZombie || zombie instanceof ConeheadZombie || zombie instanceof FootballZombie || zombie instanceof ScreenDoorZombie){
-            if (((IronZombie) zombie).stillHasIron()) {
-                ((IronZombie) zombie).setIron_health(0);
-            } 
+        if (zombie.getHas_Iron()){
+            zombie.setHealth(0);
         } 
     } 
 
