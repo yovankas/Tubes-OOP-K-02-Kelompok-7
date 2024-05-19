@@ -1,7 +1,11 @@
 package src.Game;
 
 import src.Plant;
+import src.Tile;
 import src.Exception.InvalidIndexException;
+import src.Plants.Lilypad;
+import src.Tiles.GroundTile;
+import src.Tiles.WaterTile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +16,7 @@ public class Deck {
     private static final int DECK_SIZE = 6;
     private Plant[] deck;
     private int plantCount;
+    private List<List<Tile>> map;
 
     public Deck() {
         deck = new Plant[DECK_SIZE];
@@ -55,11 +60,12 @@ public class Deck {
         }
     }
 
-    public void choosePlant(int i) throws InvalidIndexException {
+    public Plant choosePlant(int i) throws InvalidIndexException {
         if (i < 0 || i >= DECK_SIZE || deck[i] == null) {
             throw new InvalidIndexException();
         } else {
             // belum diisi
+            return deck[i] ;
         }
     }
 
@@ -67,8 +73,49 @@ public class Deck {
         return plantCount == DECK_SIZE;
     }
 
-    public void tanam () {
-        // belum diisi
+    public void tanam(Plant plant, int x, int y) {
+        // Pastikan koordinat valid
+        if (x >= 0 && x < 6 && y >= 0 && y < 11) {
+            Tile target = map.get(x).get(y);
+    
+            if (target.getPlant() == null) { // Tidak ada tanaman di tile target
+                if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
+                    // Tanaman biasa di tanah
+                    target.addPlant(plant);
+                    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+                } else if (plant instanceof Lilypad && target instanceof WaterTile) {
+                    // Lilypad di air
+                    ((WaterTile)target).addLilypad((Lilypad) plant);
+                    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+                } else {
+                    System.out.println("Tidak bisa tanam di sini.");
+                }
+            } else if (target.getPlant() instanceof Lilypad && !(plant instanceof Lilypad))  {
+                // Tanaman biasa di air yang sudah ada Lilypad
+                target.addPlant(plant);
+                System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+            } else {
+                System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
+            }
+        } else {
+            System.out.println("Koordinat tidak valid.");
+        }
+    }
+    
+
+    public void gali(int x, int y) {
+        if (x >= 0 && x < map.size() && y >= 0 && y < map.get(y).size()) {
+            Tile target = map.get(x).get(y);
+            Plant plant = target.getPlant();
+            if (plant != null) {
+                target.removePlant();
+                System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
+            } else {
+                System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+            }
+        } else {
+            System.out.println("Invalid coordinates (" + x + ", " + y + ")");
+        }
     }
 
     public void increasePlantCount() {
