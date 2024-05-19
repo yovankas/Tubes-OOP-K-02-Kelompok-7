@@ -121,7 +121,7 @@ class MapMover {
                 currentTile.removeZombie(zombie);
                 nextTile.addZombie(zombie);
             }
-        } else {
+        } else { // exit condition
         }
     }
 }
@@ -203,4 +203,5 @@ public class Map implements TimeObserver {
         Timer timer = new Timer();
         Map map = new Map(timer);
     }
+
 }

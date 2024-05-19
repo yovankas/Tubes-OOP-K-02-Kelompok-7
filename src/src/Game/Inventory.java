@@ -1,6 +1,9 @@
 package src.Game;
 
 import src.Plant;
+import src.Exception.FullDeckException;
+import src.Exception.InvalidIndexException;
+import src.Exception.PlantAlreadyInDeckException;
 import src.Plants.*;
 import java.util.ArrayList;
 // import java.util.Scanner;
@@ -52,9 +55,9 @@ public class Inventory {
         }
     }
 
-    public void swapDeck (int x, int y){
+    public void swapDeck (int x, int y) throws InvalidIndexException {
         if (x < 0 || x > deck.getDeck().size() || y < 0 || y > deck.getDeck().size()) {
-            throw new IllegalArgumentException("Index tidak valid");
+            throw new InvalidIndexException();
         } else {
             Plant temp = deck.getDeck().get(x);
             deck.getDeck().set(x, deck.getDeck().get(y));
@@ -62,9 +65,9 @@ public class Inventory {
         }
     }
 
-    public void deletePlantFromDeck (int index){
+    public void deletePlantFromDeck (int index) throws InvalidIndexException{
         if (index < 0 || index > deck.getDeck().size()) {
-            throw new IllegalArgumentException("Index tidak valid");
+            throw new InvalidIndexException();
         }
         else if (deck.getDeck().isEmpty()){
             System.out.println("Deck kosong");
@@ -82,15 +85,15 @@ public class Inventory {
 
     public void addPlantToDeck (int i) throws Exception{
         if (i < 0 || i > inventory.size()) {
-            throw new IllegalArgumentException("Index tidak valid");
+            throw new InvalidIndexException();
         }
         else if (deck.getDeck().size() >= 6){
-            throw new IllegalArgumentException("Deck sudah full");
+            throw new FullDeckException();
         }
         else if (deck.getDeck().contains(inventory.get(i-1))){
-            throw new IllegalArgumentException("Plant sudah ada di deck");
+            throw new PlantAlreadyInDeckException();
         }
-        System.out.println(inventory.get(i-1).getName() + " ditambahkan deck");
+        System.out.println(inventory.get(i-1).getName() + " ditambahkan ke Deck");
         deck.getDeck().add(inventory.get(i-1));
     }
 

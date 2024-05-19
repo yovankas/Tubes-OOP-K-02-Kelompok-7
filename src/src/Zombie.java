@@ -19,7 +19,7 @@ public abstract class Zombie extends Creatures {
     public double getMove_Speed() {
         return move_speed;
     }
-
+    
     public void setMove_Speed(double effect) {
         move_speed = move_speed * effect;
     }
