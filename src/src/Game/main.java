@@ -1,13 +1,12 @@
 package src.Game;
 
 import java.util.Scanner;
-
 import src.Exception.WrongCommandException;
 
 public class main {
     //main
     public static void main(String[] args) {
-        Game game = new Game();
+        Game game;
         MainMenu mainMenu = new MainMenu();
         Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +16,8 @@ public class main {
 
             try {
                 if (input.equals("Start")) {
-                    Game.start(scanner);
+                    game = new Game();
+                    game.start(scanner);
                     break;
                 } else if (input.equals("Help")) {
                     //help

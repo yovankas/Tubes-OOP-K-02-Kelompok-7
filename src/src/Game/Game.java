@@ -1,16 +1,25 @@
 package src.Game;
 
 import java.util.Scanner;
-import java.util.Timer;
 // import src.Exception.WrongCommandException;
 
-public class Game {
+public class Game implements TimeObserver{
     GameTimer gameTimer;
     Map map;
     Sun sun;
     Deck deck;
     Inventory inventory;
-    // visitorGame visitorGame;
+    GameLogic gameLogic;
+
+    //constructor
+    public Game(){
+        this.gameTimer = new GameTimer();
+        this.map = new Map(gameTimer);
+        this.sun = new Sun(gameTimer);
+        this.deck = new Deck();
+        this.inventory = new Inventory();
+        this.gameLogic = new GameLogic(this, gameTimer);
+    }
 
     //getter
     public Map getMap() {
@@ -22,9 +31,18 @@ public class Game {
     }
 
     public void GameOver() {
+        gameTimer.stop();
         System.out.println("Game Over");
     }
 
+    public void Win() {
+        gameTimer.stop();
+        System.out.println("You Win!");
+    }
+
+    public void gameDisplay(){
+
+    }
     //main
     // public static void main(String[] args) {
     //     MainMenu mainMenu = new MainMenu();
@@ -58,9 +76,8 @@ public class Game {
     //     scanner.close();
     // }
 
-    public static void start(Scanner scanner) {
-        Inventory inventory = new Inventory() ;
-
+    public void start(Scanner scanner) {
+        //deck
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
             System.out.println("Masukkan angka tanaman untuk dimasukkan ke Deck: ");
@@ -71,7 +88,6 @@ public class Game {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
 
         if (inventory.getDeck().isDeckFull()) {
@@ -85,10 +101,18 @@ public class Game {
             }
         }
 
-        
-        Timer timer = new Timer();
-        Map map = new Map(timer);
+        //start
+        gameTimer.start();
 
+
+
+
+        
         scanner.close();
+    }
+
+    @Override
+    public void update(long elapsedTime) {
+        gameDisplay();
     }
 }

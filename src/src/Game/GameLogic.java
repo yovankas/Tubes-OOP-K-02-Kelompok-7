@@ -191,6 +191,9 @@ public class GameLogic implements visitor, TimeObserver {
                 tempTile.accept(this);
             }
         }
+        if (elapsedTime > 160 && ZombieCount == 0){
+            game.Win();
+        }
     }
 
 

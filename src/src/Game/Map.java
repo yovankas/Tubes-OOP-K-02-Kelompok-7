@@ -3,7 +3,6 @@ package src.Game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
 import src.Plant;
 import src.Tile;
 import src.Tiles.*;
@@ -148,10 +147,9 @@ public class Map implements TimeObserver {
     private final int width = 6;
     private List<List<Tile>> map;
     private Random random;
-    private GameTimer gameTimer;
     private long lastSpawnTime = 0;
 
-    public Map(Timer existingTimer) {
+    public Map(GameTimer gameTimer) {
         map = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             List<Tile> row = new ArrayList<>();
@@ -169,9 +167,7 @@ public class Map implements TimeObserver {
             map.add(row);
         }
         random = new Random();
-        gameTimer = new GameTimer();
         gameTimer.addObserver(this);
-        gameTimer.start();
     }
 
     public void printMap() {
@@ -235,8 +231,9 @@ public class Map implements TimeObserver {
     }
 
     // public static void main(String[] args) {
-    //     Timer timer = new Timer();
+    //     GameTimer timer = new GameTimer();
     //     Map map = new Map(timer);
+    //     timer.start();
     // }
 
 }
