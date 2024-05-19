@@ -75,29 +75,30 @@ public class Deck {
         // Pastikan koordinat valid
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
-
-            if (target.getPlant() == null) { // Tidak ada tanaman di tile target
-                if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
-                    // Tanaman biasa di tanah
-                    GroundTile ground = (GroundTile) target;
+            if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
+                // Tanaman biasa di tanah
+                GroundTile ground = (GroundTile) target;
+                if (ground.getPlant() == null){
                     ground.addPlant(plant);
-               //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
-                } else if (plant instanceof Lilypad && target instanceof WaterTile) {
-                    // Lilypad di air
-                    WaterTile water = (WaterTile) target;
+                } else {
+                    System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
+                }
+           //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+            } else if (target instanceof WaterTile) {
+                // Lilypad di air
+                WaterTile water = (WaterTile) target;
+                if (water.getLilypad() == null){ // Tidak ada lilypad di tile target
                     Lilypad lily = (Lilypad) plant;
                     water.addLilypad(lily);
-                //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
-                } else {
-                    System.out.println("Tidak bisa tanam di sini.");
+                } else if (water.getLilypad().getPlant() == null){ // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
+                    Lilypad lilypad = (Lilypad) water.getLilypad();
+                    lilypad.addPlant(plant);
+                } else { // Sudah ada tanaman di lilypad
+                    System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
                 }
-            } else if (target.getPlant() instanceof Lilypad && !(plant instanceof Lilypad))  {
-                // Tanaman biasa di air yang sudah ada Lilypad
-                Lilypad lilypad = (Lilypad) target.getPlant();
-                lilypad.addPlant(plant);
-           //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+            //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
             } else {
-                System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
+                System.out.println("Tidak bisa tanam di sini.");
             }
         } else {
             System.out.println("Koordinat tidak valid.");
@@ -108,12 +109,25 @@ public class Deck {
     public void gali(int x, int y) {
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
-            Plant plant = target.getPlant();
-            if (plant != null) {
-                target.removePlant();
-                System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
-            } else {
-                System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+            Plant plant;
+            if (target instanceof  GroundTile) {
+                GroundTile ground = (GroundTile) target;
+                plant = ground.getPlant();
+                if (plant != null) {
+                    ground.removePlant();
+                    System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
+                } else {
+                    System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                }                
+            } else if (target instanceof WaterTile) {
+                WaterTile water = (WaterTile) target;
+                plant = (Plant) water.getLilypad();
+                if (plant != null) {
+                    water.removeLilypad();
+                    System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
+                } else {
+                    System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                }                
             }
         } else {
             System.out.println("Invalid coordinates (" + x + ", " + y + ")");
