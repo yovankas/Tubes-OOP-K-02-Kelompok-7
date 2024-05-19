@@ -7,7 +7,7 @@ public class FootballZombie extends Zombie{
     private int shield = 140;
 
     public FootballZombie() {
-        super("Football Zombie", 125, 100, 1, 5, false, false, true);
+        super("Football Zombie", 125, 100, 1, 10, false, false, true);
     }
 
     public int getshield() {

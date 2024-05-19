@@ -48,7 +48,7 @@ class MapSpawner {
     }
 
     private Zombie createRandomZombie(int row) {
-        int zombieType = random.nextInt(10);
+        int zombieType = random.nextInt(11);
         Zombie zombie = null;
         switch (zombieType) {
             case 0: zombie = new NormalZombie(); break;
@@ -60,6 +60,7 @@ class MapSpawner {
             case 6: zombie = new PoleVaultingZombie(); break;
             case 7: zombie = new NewspaperZombie(); break;
             case 8: zombie = new DolphinRiderZombie(); break;
+            case 9: zombie = new BungeeZombie(); break;
             default: zombie = new NormalZombie(); // Fallback to NormalZombie
         }
         // Ensure the zombie type matches the row type

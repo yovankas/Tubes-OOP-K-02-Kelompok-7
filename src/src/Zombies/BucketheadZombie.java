@@ -7,7 +7,7 @@ public class BucketheadZombie extends Zombie{
     private int shield = 175;
 
     public BucketheadZombie() {
-        super("Buckethead Zombie", 300, 100, 1, 5, false, false, true);
+        super("Buckethead Zombie", 300, 100, 1, 10, false, false, true);
     }
 
     public int getshield() {

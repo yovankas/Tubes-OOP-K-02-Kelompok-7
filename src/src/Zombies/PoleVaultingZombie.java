@@ -6,7 +6,7 @@ import src.Zombie;
 public class PoleVaultingZombie extends Zombie{
 
     public PoleVaultingZombie() {
-        super("Pole Vaulting Zombie", 175, 100, 1, 5, false, true, false);
+        super("Pole Vaulting Zombie", 175, 100, 1, 10, false, true, false);
     }
 
     public void jumpOver() {

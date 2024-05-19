@@ -7,7 +7,7 @@ public class ConeheadZombie extends Zombie{
     private int shield = 125;
 
     public ConeheadZombie() {
-        super("Conehead Zombie", 125, 100, 1, 5, false, false, true);
+        super("Conehead Zombie", 125, 100, 1, 10, false, false, true);
     }
 
     public int getshield() {

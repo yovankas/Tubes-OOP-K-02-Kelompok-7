@@ -6,7 +6,7 @@ import src.Zombie;
 public class DolphinRiderZombie extends Zombie {
 
     public DolphinRiderZombie() {
-        super("Dolphin Rider Zombie", 175, 100, 1, 5, true, true, false);
+        super("Dolphin Rider Zombie", 175, 100, 1, 10, true, true, false);
     }
 
     public void jumpOver() {

@@ -44,6 +44,9 @@ public class MainMenu {
         Zombie screenDoorZombie = new ScreenDoorZombie();
         listOfZombies.add(screenDoorZombie);
 
+        Zombie bungeeZombie = new BungeeZombie();
+        listOfZombies.add(bungeeZombie);
+
         Plant lilypad = new Lilypad();
         Plant magnetshroom = new Magnetshroom();
         Plant peashooter = new Peashooter();

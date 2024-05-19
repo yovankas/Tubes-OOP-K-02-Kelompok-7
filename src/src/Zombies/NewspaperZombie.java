@@ -7,7 +7,7 @@ public class NewspaperZombie extends Zombie{
     private int shield = 150;
 
     public NewspaperZombie() {
-        super("Newspaper Zombie", 125, 100, 1, 5, false, false, false);
+        super("Newspaper Zombie", 125, 100, 1, 10, false, false, false);
     }
 
     public int getshield() {

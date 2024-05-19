@@ -7,7 +7,7 @@ public class ScreenDoorZombie extends Zombie {
     private int shield = 180;
 
     public ScreenDoorZombie() {
-        super("Screen Door Zombie", 125, 100, 1, 5, false, false, true);
+        super("Screen Door Zombie", 125, 100, 1, 10, false, false, true);
     }
 
     public int getshield() {
