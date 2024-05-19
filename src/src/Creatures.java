@@ -1,9 +1,7 @@
 package src;
 
-import src.Game.visitable;
-import src.Game.visitor;
 
-public abstract class Creatures implements  visitable {
+public abstract class Creatures {
     private String name;
     private int health;
     protected int attack_damage;
@@ -50,7 +48,4 @@ public abstract class Creatures implements  visitable {
         System.out.println("Attack Damage: " + getAttack_Damage());
         System.out.println("Attack Speed: " + getAttack_Speed());
     }
-
-    @Override
-    public abstract void accept(visitor visitor);
 }

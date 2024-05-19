@@ -1,8 +1,10 @@
 package src;
 
 import java.util.ArrayList;
+import src.Game.visitable;
+import src.Game.visitor;
 
-public class Tile {
+public class Tile implements visitable {
     private int x;
     private int y;
     private ArrayList<Zombie> listOfZombies;
@@ -38,4 +40,8 @@ public class Tile {
         listOfZombies.remove(zombie);
     }
 
+    @Override
+    public void accept(visitor v){
+        v.visit(this);
+    }
 }

@@ -1,5 +1,6 @@
 package src.Tiles;
 
+import src.Game.visitor;
 import src.Plant;
 import src.Tile;
 
@@ -25,5 +26,10 @@ public class GroundTile extends Tile{
     //remove plant
     public void removePlant(){
         this.plant = null;
+    }
+
+    @Override
+    public void accept(visitor v) {
+        v.visit(this);
     }
 }

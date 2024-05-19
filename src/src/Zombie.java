@@ -1,19 +1,37 @@
 package src;
-
-import src.Game.visitor;
 public abstract class Zombie extends Creatures {
     private double move_speed;
     private boolean is_aquatic;
     private long lastMoveTime;
+    private boolean has_jump = false;
+    private boolean has_iron = false;
 
-    public Zombie(String name, int health, int attack_damage, int attack_speed, double move_speed, boolean is_aquatic){
+    public Zombie(String name, int health, int attack_damage, int attack_speed, double move_speed, boolean is_aquatic, boolean has_jump, boolean has_iron){
         super(name, health, attack_damage, attack_speed);
         this.move_speed = move_speed;
         this.is_aquatic = is_aquatic;
+        this.has_jump = has_jump;
+        this.has_iron = has_iron;
     }
 
     public boolean getIs_Aquatic() {
         return is_aquatic;
+    }
+
+    public boolean getHas_Jump() {
+        return has_jump;
+    }
+
+    public boolean getHas_Iron() {
+        return has_iron;
+    }
+
+    public void setHas_Jump(boolean has_jump) {
+        this.has_jump = has_jump;
+    }
+
+    public void setHas_Iron(boolean has_iron) {
+        this.has_iron = has_iron;
     }
 
     public double getMove_Speed() {
@@ -42,9 +60,4 @@ public abstract class Zombie extends Creatures {
     }
 
    public abstract void attack(Plant plant) ;
-
-@Override
-   public void accept(visitor visitor) {
-        visitor.visitZombie(this);
-    }
 }

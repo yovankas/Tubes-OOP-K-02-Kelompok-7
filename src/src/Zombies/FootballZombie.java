@@ -1,33 +1,55 @@
 package src.Zombies;
 
-import src.IronZombie;
 import src.Plant;
 import src.Zombie;
 
-public class FootballZombie extends Zombie implements IronZombie{
-    private int iron_health = 140;
+public class FootballZombie extends Zombie{
+    private int shield = 140;
 
     public FootballZombie() {
-        super("Football Zombie", 125, 100, 1, 5, false);
+        super("Football Zombie", 125, 100, 1, 5, false, false, true);
     }
 
-    public int getIron_health() {
-        return iron_health;
+    public int getshield() {
+        return shield;
     }
 
-    public void setIron_health(int iron_health) {
-        this.iron_health = iron_health ;
+    public void setshield(int shield) {
+        this.shield = shield ;
     }
 
-    public boolean stillHasIron() {
-        return iron_health > 0 ;
+    public boolean haveShield() {
+        return shield > 0 ;
     }
 
+    @Override
+    public int getHealth() {
+        if (haveShield()){
+            return shield;
+        } else {
+            return super.getHealth();
+        }
+    }
+
+    @Override
+    public void setHealth(int health) {
+        if (haveShield()){
+            setshield(health);
+            if (shield <= 0) {
+                setHas_Iron(false);
+            }
+        } else {
+            super.setHealth(health);
+        }
+    }
+
+    @Override
     public void printInfo() {
         super.printInfo();
-        System.out.println("Helmet Health: " + getIron_health());
+        System.out.println("Helmet Health: " + getshield());
     }
 
+    @Override
     public void attack(Plant plant) {
         plant.setHealth(plant.getHealth() - attack_damage);
     }

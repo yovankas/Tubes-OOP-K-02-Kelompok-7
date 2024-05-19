@@ -1,9 +1,12 @@
 package src.Game;
 
-import src.Plant;
-import src.Zombie;
+import src.Tile;
+import src.Tiles.*;
 
 public interface visitor {
-    public void visit(Plant plant);
-    public void visit(Zombie zombie);
+    public void visit(Tile tile);
+    public void visit(GroundTile ground);
+    public void visit(WaterTile water);
+    public void visit(SpawnTile spawn);
+    public void visit(BaseTile base);
 }

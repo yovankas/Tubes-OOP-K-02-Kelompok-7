@@ -1,7 +1,8 @@
 package src.Tiles;
 
-import src.Tile;
+import src.Game.visitor;
 import src.Plants.Lilypad;
+import src.Tile;
 
 public class WaterTile extends Tile{
     private Lilypad lilypad;
@@ -25,5 +26,10 @@ public class WaterTile extends Tile{
     //remove lilypad
     public void removeLilypad(){
         this.lilypad = null;
+    }
+
+    @Override
+    public void accept(visitor v) {
+        v.visit(this);
     }
 }
