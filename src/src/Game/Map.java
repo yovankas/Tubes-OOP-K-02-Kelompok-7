@@ -186,6 +186,11 @@ public class Map implements TimeObserver {
                     } else if (map.get(i).get(j) instanceof GroundTile) {
                         System.out.print("G ");
                     }
+                    if (map.get(i).get(j) instanceof GroundTile && ((GroundTile)map.get(i).get(j)).getPlant() != null) {
+                        System.out.print("P");
+                    } else if (map.get(i).get(j) instanceof WaterTile && ((WaterTile)map.get(i).get(j)).getLilypad() != null) {
+                        System.out.print("P");
+                    }
                     List<Zombie> zombiesOnTile = map.get(i).get(j).getZombie();
                     if (!zombiesOnTile.isEmpty()) {
                         for (Zombie zombie : zombiesOnTile) {
