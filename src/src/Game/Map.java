@@ -25,8 +25,12 @@ class MapSpawner {
 
     public void spawnZombies(long elapsedTime) {
         int totalZombies = getTotalZombies();
-        if (totalZombies >= MAX_ZOMBIES) return;
+        if (totalZombies >= MAX_ZOMBIES) return; // exception zombie udah max
 
+        if (elapsedTime < 20 || elapsedTime > 160) {
+            return; 
+        }
+        
         int width = map.size();
         int i = random.nextInt(width);
         if (random.nextDouble() < SPAWN_PROBABILITY) {
@@ -152,7 +156,7 @@ public class Map implements TimeObserver {
             map.add(row);
         }
         random = new Random();
-        gameTimer = new GameTimer(existingTimer);
+        gameTimer = new GameTimer();
         gameTimer.addObserver(this);
         gameTimer.start();
     }
@@ -170,8 +174,12 @@ public class Map implements TimeObserver {
                     } else if (map.get(i).get(j) instanceof GroundTile) {
                         System.out.print("G ");
                     }
-                    if (!map.get(i).get(j).getZombie().isEmpty()) {
-                        System.out.print("Z ");
+                    List<Zombie> zombiesOnTile = map.get(i).get(j).getZombie();
+                    if (!zombiesOnTile.isEmpty()) {
+                        for (Zombie zombie : zombiesOnTile) {
+                            System.out.print("Z");
+                        }
+                        System.out.print(" ");
                     } else {
                         System.out.print(". "); // Empty tile representation
                     }
@@ -199,9 +207,9 @@ public class Map implements TimeObserver {
         }
     }
 
-    public static void main(String[] args) {
-        Timer timer = new Timer();
-        Map map = new Map(timer);
-    }
+    // public static void main(String[] args) {
+    //     Timer timer = new Timer();
+    //     Map map = new Map(timer);
+    // }
 
 }
