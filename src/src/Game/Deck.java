@@ -7,7 +7,7 @@ import src.Plants.Lilypad;
 import src.Tiles.GroundTile;
 import src.Tiles.WaterTile;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 // import java.lang.Exception;
 
@@ -75,25 +75,25 @@ public class Deck {
 
     public void tanam(Plant plant, int x, int y) {
         // Pastikan koordinat valid
-        if (x >= 0 && x < 6 && y >= 0 && y < 11) {
+        if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
     
             if (target.getPlant() == null) { // Tidak ada tanaman di tile target
                 if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
                     // Tanaman biasa di tanah
                     target.addPlant(plant);
-                    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+               //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
                 } else if (plant instanceof Lilypad && target instanceof WaterTile) {
                     // Lilypad di air
                     ((WaterTile)target).addLilypad((Lilypad) plant);
-                    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+                //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
                 } else {
                     System.out.println("Tidak bisa tanam di sini.");
                 }
             } else if (target.getPlant() instanceof Lilypad && !(plant instanceof Lilypad))  {
                 // Tanaman biasa di air yang sudah ada Lilypad
-                target.addPlant(plant);
-                System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
+                ((Lilypad)target.getPlant()).addPlant(plant);
+           //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
             } else {
                 System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
             }
@@ -104,7 +104,7 @@ public class Deck {
     
 
     public void gali(int x, int y) {
-        if (x >= 0 && x < map.size() && y >= 0 && y < map.get(y).size()) {
+        if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
             Plant plant = target.getPlant();
             if (plant != null) {
