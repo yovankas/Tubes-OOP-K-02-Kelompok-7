@@ -8,9 +8,4 @@ public class SpawnTile extends Tile{
     public SpawnTile(int x, int y){
         super(x, y);
     }
-
-    @Override
-    public void accept(visitor v) {
-        v.visit(this);
-    }
 }

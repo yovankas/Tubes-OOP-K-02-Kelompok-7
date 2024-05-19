@@ -2,10 +2,29 @@ package src.Game;
 
 import java.util.Scanner;
 import java.util.Timer;
-
 import src.Exception.WrongCommandException;
 
 public class Game {
+    GameTimer gameTimer;
+    Map map;
+    Sun sun;
+    Deck deck;
+    Inventory inventory;
+    visitorGame visitorGame;
+
+    //getter
+    public Map getMap() {
+        return this.map;
+    }
+
+    public Sun getSun() {
+        return this.sun;
+    }
+
+    public void GameOver() {
+        System.out.println("Game Over");
+    }
+
     //main
     public static void main(String[] args) {
         MainMenu mainMenu = new MainMenu();

@@ -6,9 +6,8 @@ import java.util.Random;
 import java.util.Timer;
 import src.Plant;
 import src.Tile;
-import src.Zombie;
-import src.Plants.*;
 import src.Tiles.*;
+import src.Zombie;
 import src.Zombies.*;
 
 class MapSpawner {
@@ -105,9 +104,22 @@ class MapMover {
                 for (Tile tile : row) {
                     List<Zombie> zombiesOnTile = tile.getZombie();
                     for (Zombie zombie : new ArrayList<>(zombiesOnTile)) {
+                        zombie.resetDebuff();
                         if (elapsedTime - zombie.getLastMoveTime() >= zombie.getMove_Speed()) {
-                            moveZombieToNextTile(zombie, tile);
-                            zombie.setLastMoveTime(elapsedTime);
+                            //get plant
+                            Plant plant;
+                            if (tile instanceof GroundTile){
+                                GroundTile ground = (GroundTile) tile;
+                                plant = ground.getPlant();
+                            } else { //WaterTile
+                                WaterTile water = (WaterTile) tile;
+                                plant = (Plant) water.getLilypad();
+                            }
+                            
+                            if (plant == null){ //no plant blocking
+                                moveZombieToNextTile(zombie, tile);
+                                zombie.setLastMoveTime(elapsedTime);
+                            }
                         }
                     }
                 }
@@ -193,6 +205,15 @@ public class Map implements TimeObserver {
     //getMap
     public List<List<Tile>> getMap() {
         return map;
+    }
+
+    //getter
+    public int getLength() {
+        return this.length;
+    }
+
+    public int getWidth() {
+        return this.width;
     }
 
     @Override

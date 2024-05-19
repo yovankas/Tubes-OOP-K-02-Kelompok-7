@@ -7,6 +7,5 @@ public interface visitor {
     public void visit(Tile tile);
     public void visit(GroundTile ground);
     public void visit(WaterTile water);
-    public void visit(SpawnTile spawn);
     public void visit(BaseTile base);
 }
