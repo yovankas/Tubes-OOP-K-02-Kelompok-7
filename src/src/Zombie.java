@@ -5,6 +5,9 @@ public abstract class Zombie extends Creatures {
     private long lastMoveTime;
     private boolean has_jump = false;
     private boolean has_iron = false;
+    private long lastSlowed;
+    private int slowDuration;
+    private boolean isSlowed = false;
 
     public Zombie(String name, int health, int attack_damage, int attack_speed, double move_speed, boolean is_aquatic, boolean has_jump, boolean has_iron){
         super(name, health, attack_damage, attack_speed);
@@ -60,4 +63,22 @@ public abstract class Zombie extends Creatures {
     }
 
    public abstract void attack(Plant plant) ;
+
+   public void slowDebuff(int slowDuration){
+        lastSlowed = System.currentTimeMillis();
+        this.slowDuration = slowDuration * 1000;
+        isSlowed = true;
+        if (!isSlowed){
+            setMove_Speed(0.5);
+            setAttack_Speed(getAttack_Speed()/2);
+        }
+   }
+
+   public void resetDebuff(){
+        if (isSlowed && System.currentTimeMillis() - lastSlowed >= slowDuration){
+            isSlowed = false;
+            setMove_Speed(2);
+            setAttack_Speed(getAttack_Speed()*2);
+        }
+   }
 }

@@ -22,5 +22,6 @@ public class Snowpea extends Plant {
     @Override
     public void attack(Zombie zombie) {
         zombie.setHealth(zombie.getHealth() - attack_damage);
+        zombie.slowDebuff(3);
     } 
 }
