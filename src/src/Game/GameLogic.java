@@ -120,7 +120,6 @@ public class GameLogic implements visitor, TimeObserver {
 
     @Override
     public void visit(Tile tile) {
-        deadZombieCollector(tile);
         if (tile instanceof GroundTile){
             GroundTile ground = (GroundTile) tile;
             ground.accept(this);
@@ -181,6 +180,7 @@ public class GameLogic implements visitor, TimeObserver {
         for (int i = 0; i < map.size(); i++) {
             for (int j = 0; j < map.get(i).size(); j++) {
                 Tile tempTile = map.get(i).get(j);
+                deadZombieCollector(tempTile);
                 tempTile.accept(this);
             }
         }
