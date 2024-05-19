@@ -6,13 +6,11 @@ import src.Tile;
 
 public class WaterTile extends Tile{
     private Lilypad lilypad;
-    private Plant plant;
 
     //constructor
     public WaterTile(int x, int y){
         super(x, y);
         this.lilypad = null;
-        this.plant = null;
     }
 
     //add lilypad
