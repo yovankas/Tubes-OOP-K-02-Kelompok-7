@@ -81,20 +81,20 @@ public class Deck {
                 if (ground.getPlant() == null){
                     ground.addPlant(plant);
                 } else {
-                    System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
+                    System.out.println("Tile sudah ditempati.");
                 }
            //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
             } else if (target instanceof WaterTile) {
                 // Lilypad di air
                 WaterTile water = (WaterTile) target;
-                if (water.getLilypad() == null){ // Tidak ada lilypad di tile target
+                if (water.getLilypad() == null && plant instanceof Lilypad){ // Tidak ada lilypad di tile target
                     Lilypad lily = (Lilypad) plant;
                     water.addLilypad(lily);
                 } else if (water.getLilypad().getPlant() == null){ // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
                     Lilypad lilypad = (Lilypad) water.getLilypad();
                     lilypad.addPlant(plant);
                 } else { // Sudah ada tanaman di lilypad
-                    System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");
+                    System.out.println("Sudah ada tanaman di Lilypad");
                 }
             //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
             } else {
