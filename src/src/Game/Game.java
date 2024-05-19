@@ -2,7 +2,7 @@ package src.Game;
 
 import java.util.Scanner;
 import java.util.Timer;
-import src.Exception.WrongCommandException;
+// import src.Exception.WrongCommandException;
 
 public class Game {
     GameTimer gameTimer;
@@ -10,7 +10,7 @@ public class Game {
     Sun sun;
     Deck deck;
     Inventory inventory;
-    visitorGame visitorGame;
+    // visitorGame visitorGame;
 
     //getter
     public Map getMap() {
@@ -26,37 +26,37 @@ public class Game {
     }
 
     //main
-    public static void main(String[] args) {
-        MainMenu mainMenu = new MainMenu();
-        Scanner scanner = new Scanner(System.in);
+    // public static void main(String[] args) {
+    //     MainMenu mainMenu = new MainMenu();
+    //     Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            mainMenu.printWelcomeMessage();
-            String input = scanner.nextLine();
+    //     while (true) {
+    //         mainMenu.printWelcomeMessage();
+    //         String input = scanner.nextLine();
 
-            try {
-                if (input.equals("Start")) {
-                    start(scanner);
-                    break;
-                } else if (input.equals("Help")) {
-                    //help
-                } else if (input.equals("Plants List")) {
-                    mainMenu.printListOfPlants();
-                } else if (input.equals("Zombies List")) {
-                    mainMenu.printListOfZombies();
-                } else if (input.equals("Exit")) {
-                    mainMenu.printExit();
-                    break;
-                } else {
-                    throw new WrongCommandException();
-                }
-            } catch (WrongCommandException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    //         try {
+    //             if (input.equals("Start")) {
+    //                 start(scanner);
+    //                 break;
+    //             } else if (input.equals("Help")) {
+    //                 //help
+    //             } else if (input.equals("Plants List")) {
+    //                 mainMenu.printListOfPlants();
+    //             } else if (input.equals("Zombies List")) {
+    //                 mainMenu.printListOfZombies();
+    //             } else if (input.equals("Exit")) {
+    //                 mainMenu.printExit();
+    //                 break;
+    //             } else {
+    //                 throw new WrongCommandException();
+    //             }
+    //         } catch (WrongCommandException e) {
+    //             System.out.println(e.getMessage());
+    //         }
+    //     }
 
-        scanner.close();
-    }
+    //     scanner.close();
+    // }
 
     public static void start(Scanner scanner) {
         Inventory inventory = new Inventory() ;

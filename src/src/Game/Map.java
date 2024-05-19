@@ -107,14 +107,14 @@ class MapMover {
                         zombie.resetDebuff();
                         if (elapsedTime - zombie.getLastMoveTime() >= zombie.getMove_Speed()) {
                             //get plant
-                            Plant plant;
+                            Plant plant = null;
                             if (tile instanceof GroundTile){
                                 GroundTile ground = (GroundTile) tile;
                                 plant = ground.getPlant();
-                            } else { //WaterTile
+                            } else if (tile instanceof WaterTile){ //WaterTile
                                 WaterTile water = (WaterTile) tile;
                                 plant = (Plant) water.getLilypad();
-                            }
+                            } else {}
                             
                             if (plant == null){ //no plant blocking
                                 moveZombieToNextTile(zombie, tile);
