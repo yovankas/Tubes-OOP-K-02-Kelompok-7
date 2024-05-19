@@ -1,6 +1,5 @@
 package src.Tiles;
 
-import src.Game.visitor;
 import src.Tile;
 
 public class SpawnTile extends Tile{
