@@ -1,7 +1,7 @@
 package src;
 public abstract class Zombie extends Creatures {
     private double move_speed;
-    private boolean is_aquatic;
+    private final boolean is_aquatic;
     private long lastMoveTime;
     private boolean has_jump = false;
     private boolean has_iron = false;

@@ -19,9 +19,16 @@ public class Magnetshroom extends Plant{
 
     @Override
     public void attack(Zombie zombie) {
-        if (zombie.getHas_Iron()){
-            zombie.setHealth(0);
-        } 
+        if (getAttack_Speed() == 0){
+            return;
+        }
+        if (getLastAttackTime() == 0 || (System.currentTimeMillis() - getLastAttackTime())/1000 >= getAttack_Speed()){
+            setLastAttackTime(System.currentTimeMillis());
+            if (zombie.getHas_Iron()){
+                zombie.setHealth(0);
+                this.setHealth(0);
+            }             
+        }
     } 
 
     // public static void main(String[] args) {

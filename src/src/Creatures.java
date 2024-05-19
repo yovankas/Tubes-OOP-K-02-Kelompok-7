@@ -2,11 +2,12 @@ package src;
 
 
 public abstract class Creatures {
-    private String name;
+    private final String name;
     private int health;
     protected int attack_damage;
     private int attack_speed;
-    private long timecreated;
+    private final long timecreated;
+    private long lastAttackTime = 0;
 
     public Creatures(String name, int health, int attack_damage, int attack_speed){
         this. name = name;
@@ -26,6 +27,14 @@ public abstract class Creatures {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setLastAttackTime(long lastAttackTime) {
+        this.lastAttackTime = lastAttackTime;
+    }
+
+    public long getLastAttackTime() {
+        return lastAttackTime;
     }
 
     public int getAttack_Damage() {

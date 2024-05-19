@@ -51,7 +51,13 @@ public class BucketheadZombie extends Zombie{
 
     @Override
     public void attack(Plant plant) {
-        plant.setHealth(plant.getHealth() - attack_damage);
+        if (getAttack_Speed() == 0){
+            return;
+        }
+        if (getLastAttackTime() == 0 || (System.currentTimeMillis() - getLastAttackTime())/1000 >= getAttack_Speed()){
+            setLastAttackTime(System.currentTimeMillis());
+            plant.setHealth(plant.getHealth() - attack_damage);
+        }
     }
 
     // public static void main(String[] args) {

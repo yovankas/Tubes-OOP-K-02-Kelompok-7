@@ -19,6 +19,12 @@ public class Wallnut extends Plant{
 
     @Override
     public void attack(Zombie zombie) {
-        zombie.setHealth(zombie.getHealth() - attack_damage);
+        if (getAttack_Speed() == 0){
+            return;
+        }
+        if (getLastAttackTime() == 0 || (System.currentTimeMillis() - getLastAttackTime())/1000 >= getAttack_Speed()){
+            setLastAttackTime(System.currentTimeMillis());
+            zombie.setHealth(zombie.getHealth() - attack_damage);
+        }
     } 
 }

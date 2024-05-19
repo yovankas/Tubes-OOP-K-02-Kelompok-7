@@ -1,9 +1,9 @@
 package src;
 
 public abstract class Plant extends Creatures {
-    private int range ;
-    private int cooldown ;
-    private int cost ;
+    private final int range ;
+    private final int cooldown ;
+    private final int cost ;
     private long lastPlantedTime;
 
     public Plant(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown){
