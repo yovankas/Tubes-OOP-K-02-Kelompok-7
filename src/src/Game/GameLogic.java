@@ -51,6 +51,13 @@ public class GameLogic implements visitor, TimeObserver {
                 Tile jumpTile = map.get(tile.getY()).get(tile.getX()-1);
                 jumpTile.addZombie(zombie);
                 tile.removeZombie(zombie);
+                if (tile instanceof GroundTile){
+                    GroundTile ground = (GroundTile) tile;
+                    ground.removePlant();
+                } else { //WaterTile
+                    WaterTile water = (WaterTile) tile;
+                    water.removeLilypad();
+                }
             } else {
                 zombie.attack(plant);
             }
