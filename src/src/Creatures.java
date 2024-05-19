@@ -6,12 +6,18 @@ public abstract class Creatures {
     private int health;
     protected int attack_damage;
     private int attack_speed;
+    private long timecreated;
 
     public Creatures(String name, int health, int attack_damage, int attack_speed){
         this. name = name;
         this.health = health;
         this.attack_damage = attack_damage;
         this.attack_speed = attack_speed;
+        this.timecreated = System.currentTimeMillis();
+    }
+
+    public long getTimeCreated() {
+        return timecreated;
     }
 
     public String getName() {

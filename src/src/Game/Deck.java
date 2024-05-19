@@ -1,14 +1,12 @@
 package src.Game;
 
-import src.Plant;
-import src.Tile;
+import java.util.List;
 import src.Exception.InvalidIndexException;
+import src.Plant;
 import src.Plants.Lilypad;
+import src.Tile;
 import src.Tiles.GroundTile;
 import src.Tiles.WaterTile;
-
-// import java.util.ArrayList;
-import java.util.List;
 // import java.lang.Exception;
 
 public class Deck {
@@ -77,22 +75,26 @@ public class Deck {
         // Pastikan koordinat valid
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
-    
+
             if (target.getPlant() == null) { // Tidak ada tanaman di tile target
                 if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
                     // Tanaman biasa di tanah
-                    target.addPlant(plant);
+                    GroundTile ground = (GroundTile) target;
+                    ground.addPlant(plant);
                //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
                 } else if (plant instanceof Lilypad && target instanceof WaterTile) {
                     // Lilypad di air
-                    ((WaterTile)target).addLilypad((Lilypad) plant);
+                    WaterTile water = (WaterTile) target;
+                    Lilypad lily = (Lilypad) plant;
+                    water.addLilypad(lily);
                 //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
                 } else {
                     System.out.println("Tidak bisa tanam di sini.");
                 }
             } else if (target.getPlant() instanceof Lilypad && !(plant instanceof Lilypad))  {
                 // Tanaman biasa di air yang sudah ada Lilypad
-                ((Lilypad)target.getPlant()).addPlant(plant);
+                Lilypad lilypad = (Lilypad) target.getPlant();
+                lilypad.addPlant(plant);
            //     System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
             } else {
                 System.out.println("Tile sudah ditempati atau tidak cocok untuk tanaman.");

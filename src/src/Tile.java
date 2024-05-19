@@ -8,7 +8,6 @@ public class Tile implements visitable {
     private int x;
     private int y;
     private ArrayList<Zombie> listOfZombies;
-    private Plant plant ;
 
     //constructor
     public Tile(int x, int y){
@@ -20,10 +19,6 @@ public class Tile implements visitable {
     //get zombie
     public ArrayList<Zombie> getZombie(){
         return listOfZombies;
-    }
-
-    public Plant getPlant() {
-        return plant ;
     }
 
     // getters
@@ -43,14 +38,6 @@ public class Tile implements visitable {
     //remove zombie
     public void removeZombie(Zombie zombie){
         listOfZombies.remove(zombie);
-    }
-
-    public void addPlant(Plant plant) {
-        this.plant = plant ;
-    }
-
-    public void removePlant() {
-        this.plant = null ;
     }
 
     @Override
