@@ -1,14 +1,9 @@
 package src.Game;
 
 import java.util.Scanner;
-<<<<<<< Updated upstream
-// import src.Exception.WrongCommandException;
-
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
-=======
->>>>>>> Stashed changes
 import src.Plants.Peashooter;
 
 public class Game implements TimeObserver{
@@ -90,6 +85,7 @@ public class Game implements TimeObserver{
 
     public void start(Scanner scanner) throws InvalidIndexException, PlantAlreadyInDeckException {
         //deck
+        Scanner scan = scanner;
        // this.deck = new Deck(map);
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
