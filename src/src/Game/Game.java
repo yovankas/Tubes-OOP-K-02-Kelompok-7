@@ -111,7 +111,7 @@ public class Game implements TimeObserver{
         //start
         gameTimer.start();      
             Peashooter x = new Peashooter() ;
-            inventory.getDeck().tanam(x, 1, 3);
+            inventory.getDeck().tanam(x, 3, 1);
             
         scanner.close();
     }

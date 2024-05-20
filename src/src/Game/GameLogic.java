@@ -1,5 +1,6 @@
 package src.Game;
 
+import java.util.Iterator;
 import java.util.List;
 import src.Plant;
 import src.Plants.Sunflower;
@@ -24,11 +25,13 @@ public class GameLogic implements visitor, TimeObserver {
         gameTimer.addObserver(this);
     } 
 
-    public synchronized void deadZombieCollector(Tile tile){
+    public void deadZombieCollector(Tile tile){
         List<Zombie> zombies = tile.getZombie();
-        for (Zombie zombie : zombies) {
+        Iterator<Zombie> iterator = zombies.iterator();
+        while (iterator.hasNext()) {
+            Zombie zombie = iterator.next();
             if (zombie.getHealth() <= 0) {
-                tile.removeZombie(zombie);
+                iterator.remove();
                 ZombieCount--;
             }
         }
@@ -127,7 +130,7 @@ public class GameLogic implements visitor, TimeObserver {
 
     @Override
     public void visit(Tile tile) {
-        deadZombieCollector(tile);
+        // deadZombieCollector(tile);
         if (tile instanceof GroundTile){
             GroundTile ground = (GroundTile) tile;
             ground.accept(this);
@@ -144,7 +147,7 @@ public class GameLogic implements visitor, TimeObserver {
 
     @Override
     public void visit(GroundTile ground) {
-        deadZombieCollector(ground);
+        // deadZombieCollector(ground);
         //check dead plants
         if (ground.getPlant() != null) {
             if(ground.getPlant().isDead()){     //there is dead plant
@@ -160,7 +163,7 @@ public class GameLogic implements visitor, TimeObserver {
 
     @Override
     public void visit(WaterTile water) {
-        deadZombieCollector(water);
+        // deadZombieCollector(water);
         //check dead lilypads
         if (water.getLilypad() != null) {
             if(water.getLilypad().isDead()){//there is dead lilypad
@@ -190,6 +193,7 @@ public class GameLogic implements visitor, TimeObserver {
         for (int i = 0; i < map.size(); i++) {
             for (int j = 0; j < map.get(i).size(); j++) {
                 Tile tempTile = map.get(i).get(j);
+                deadZombieCollector(tempTile);
                 tempTile.accept(this);
             }
         }
