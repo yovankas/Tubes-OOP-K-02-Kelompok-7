@@ -173,6 +173,7 @@ public class Inventory {
             String stillChangeStr = scanner.nextLine();
             if (stillChangeStr.equals("N")) {
                 stillChange = false;
+                break;
             }
         }
 
