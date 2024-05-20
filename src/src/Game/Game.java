@@ -123,7 +123,6 @@ public class Game implements TimeObserver{
         }
 
         //start
-<<<<<<< Updated upstream
         gameTimer.start();  
         while (true) {
             try {
@@ -148,10 +147,10 @@ public class Game implements TimeObserver{
             } catch (WrongCommandException e) {
                 System.out.println(e.getMessage());
             }
+            break ;
         }
         
-=======
-        gameTimer.start();   
+    //  gameTimer.start();   
 
         while(!joever){
             if (scanner.next() == "\n"){
@@ -161,7 +160,6 @@ public class Game implements TimeObserver{
             }
             gameDisplay();
         }
->>>>>>> Stashed changes
     }   
     //         Repeater y = new Repeater();
     //         Peashooter x = new Peashooter() ;
