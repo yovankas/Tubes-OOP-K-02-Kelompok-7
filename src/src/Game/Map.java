@@ -225,9 +225,11 @@ public class Map implements TimeObserver {
 
     @Override
     public void update(long elapsedTime) {
-        if (elapsedTime - lastSpawnTime >= 1) {
+        if (elapsedTime - lastSpawnTime >= 3) {
             new MapSpawner(map).spawnZombies(elapsedTime);
             lastSpawnTime = elapsedTime;
+        }
+        if (elapsedTime % 1 == 0) {
             new MapMover(map).moveZombies(elapsedTime);
         }
         if (elapsedTime % 1 == 0) {

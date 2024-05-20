@@ -129,8 +129,8 @@ public class Inventory {
 
     public void changeDeck() throws InvalidIndexException, PlantAlreadyInDeckException {
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+        boolean stillChange = true;
+        while (stillChange) {
             getDeck().showDeck();
             System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
             int deckIndex = scanner.nextInt();
@@ -163,12 +163,16 @@ public class Inventory {
 
                 deck.getDeck()[deckIndex - 1] = plantToAdd;
                 System.out.println(plantToRemove.getName() + " sudah dihapus dari Deck dan " + plantToAdd.getName() + " ditambahkan ke Deck");
-                break;
 
             } catch (InvalidIndexException e) {
-                throw new InvalidIndexException();
+                System.out.println("Indeks tidak valid: " + e.getMessage());
             } catch (PlantAlreadyInDeckException e) {
-                throw new PlantAlreadyInDeckException();
+                System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
+            }
+            System.out.println("Apakah masih ingin mengganti Deck? (Y/N)");
+            String stillChangeStr = scanner.nextLine();
+            if (stillChangeStr.equals("N")) {
+                stillChange = false;
             }
         }
 

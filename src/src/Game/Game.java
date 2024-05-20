@@ -3,6 +3,9 @@ package src.Game;
 import java.util.Scanner;
 // import src.Exception.WrongCommandException;
 
+import src.Exception.FullDeckException;
+import src.Exception.InvalidIndexException;
+import src.Exception.PlantAlreadyInDeckException;
 import src.Plants.Peashooter;
 
 public class Game implements TimeObserver{
@@ -82,7 +85,7 @@ public class Game implements TimeObserver{
     //     scanner.close();
     // }
 
-    public void start(Scanner scanner) {
+    public void start(Scanner scanner) throws InvalidIndexException, PlantAlreadyInDeckException {
         //deck
        // this.deck = new Deck(map);
         while (!(inventory.getDeck().isDeckFull())) {
@@ -92,8 +95,14 @@ public class Game implements TimeObserver{
             scanner.nextLine();
             try {
                 inventory.addPlantToDeck(i);
+            } catch (InvalidIndexException e) {
+                System.out.println("Indeks tidak valid: " + e.getMessage());
+            } catch (FullDeckException e) {
+                System.out.println("Deck sudah penuh: " + e.getMessage());
+            } catch (PlantAlreadyInDeckException e) {
+                System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Kesalahan: " + e.getMessage());
             }
         }
 
@@ -101,10 +110,12 @@ public class Game implements TimeObserver{
             System.out.println("Deck sudah selesai diisi. Apakah ingin mengganti? (Y/N)");
             inventory.getDeck().showDeck();
             String input = scanner.nextLine();
-            if (input.equals("Y")) {
-                //manggil change deck
-            }
-            else {
+            if (input.equalsIgnoreCase("Y")) {
+                try {
+                    inventory.changeDeck();
+                } catch (InvalidIndexException | PlantAlreadyInDeckException e) {
+                    System.out.println("Kesalahan saat mengganti Deck: " + e.getMessage());
+                }
             }
         }
 
