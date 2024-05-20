@@ -17,10 +17,6 @@ public abstract class Plant extends Creatures {
         lastPlantedTime = System.currentTimeMillis();
     }
 
-    private long getLastPlantedTime() {
-        return lastPlantedTime;
-    }
-
     public int getCost() {
         return cost ;
     }

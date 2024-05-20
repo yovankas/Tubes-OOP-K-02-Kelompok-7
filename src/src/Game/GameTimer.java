@@ -31,10 +31,6 @@ public class GameTimer {
             public void run() {
                 long currentTime = System.currentTimeMillis(); // Get current time in ms
                 elapsedTime = (currentTime - startTime) / 1000; // Convert ms to seconds
-<<<<<<< Updated upstream
-                // System.out.print("\rElapsed time: " + elapsedTime + " seconds\n"); // "/r" to overwrite the previous line
-=======
->>>>>>> Stashed changes
                 for (TimeObserver observer : observers) {
                     observer.update(elapsedTime); // Notify observer
                 }
