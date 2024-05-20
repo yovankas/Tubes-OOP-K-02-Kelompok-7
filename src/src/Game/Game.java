@@ -4,7 +4,10 @@ import java.util.Scanner;
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
+import src.Plants.Lilypad;
 import src.Plants.Peashooter;
+import src.Plants.Repeater;
+import src.Plants.Squash;
 
 public class Game implements TimeObserver{
     GameTimer gameTimer;
@@ -118,11 +121,32 @@ public class Game implements TimeObserver{
         }
 
         //start
-        gameTimer.start();      
-            Peashooter x = new Peashooter() ;
-            inventory.getDeck().tanam(x, 3, 1);
+        gameTimer.start();   }   
+    //         Repeater y = new Repeater();
+    //         Peashooter x = new Peashooter() ;
+    //         Squash z = new Squash() ;
+    //         Lilypad l = new Lilypad() ;
+    //         l.addPlant(y);
+    //         try {
+    //         inventory.getDeck().tanam(z, 3, 1, sun);
+    //         //inventory.getDeck().tanam(y, 4, 0, sun);
+    //     }
+    //         // inventory.getDeck().tanam(y, 4, 1, sun);
+    //         // inventory.getDeck().tanam(y, 4, 4, sun);
+    //         // inventory.getDeck().tanam(y, 4, 5, sun);
+    //         // inventory.getDeck().tanam(x, 5, 0, sun);
+    //         // inventory.getDeck().tanam(x, 5, 1, sun);
+    //         // inventory.getDeck().tanam(x, 5, 4, sun);
+    //         // inventory.getDeck().tanam(x, 5, 5, sun);
+    //         // inventory.getDeck().tanam(z, 5, 0, sun);
+    //         // inventory.getDeck().tanam(z, 5, 1, sun);
+    //         // inventory.getDeck().tanam(z, 5, 4, sun);
+    //         // inventory.getDeck().tanam(z, 5, 5, sun);
+    //         // inventory.getDeck().tanam(l, 5, 2, sun);
+    //         // inventory.getDeck().tanam(l, 5, 3, sun);}
+    //         catch(Exception e){System.out.println(e.getMessage());} ;
             
-    }
+    // }
 
     @Override
     public void update(long elapsedTime) {
