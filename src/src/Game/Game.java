@@ -85,7 +85,6 @@ public class Game implements TimeObserver{
 
     public void start(Scanner scanner) throws InvalidIndexException, PlantAlreadyInDeckException {
         //deck
-        Scanner scan = scanner;
        // this.deck = new Deck(map);
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
