@@ -1,9 +1,12 @@
 package src.Game;
 
 import java.util.Scanner;
+
+import src.Plant;
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
+import src.Exception.WrongCommandException;
 
 
 public class Game implements TimeObserver{
@@ -83,7 +86,7 @@ public class Game implements TimeObserver{
     //     scanner.close();
     // }
 
-    public void start(Scanner scanner) throws InvalidIndexException, PlantAlreadyInDeckException {
+    public void start(Scanner scanner) throws Exception {
         //deck
        // this.deck = new Deck(map);
         while (!(inventory.getDeck().isDeckFull())) {
@@ -118,7 +121,33 @@ public class Game implements TimeObserver{
         }
 
         //start
-        gameTimer.start();   }   
+        gameTimer.start();  
+        while (true) {
+            try {
+                String cmd = scanner.nextLine();
+                if (cmd.equals("Tanam")) { 
+                    System.out.println("Masukkan indeks kolom yang ingin ditanami!");
+                    int xtanam = scanner.nextInt();
+                    System.out.println("Masukkan indeks baris yang ingin ditanami!");
+                    int ytanam = scanner.nextInt();
+                    inventory.getDeck().showDeck();
+                    System.out.println("Masukkan indeks jenis tanaman yang ingin ditanam!");
+                    int indeksplant = scanner.nextInt();
+                    Plant plant= inventory.getDeck().getDeck()[indeksplant-1];
+                    inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
+                } else if (cmd.equals("Gali")) {
+                    System.out.println("Masukkan indeks kolom yang ingin digali!");
+                    int xgali = scanner.nextInt();
+                    System.out.println("Masukkan indeks baris yang ingin digali!");
+                    int ygali = scanner.nextInt();
+                    // inventory.getDeck().tanam(plant, xtanam, ytanam, sun); // method gali
+                } else throw new WrongCommandException();
+            } catch (WrongCommandException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+    }   
     //         Repeater y = new Repeater();
     //         Peashooter x = new Peashooter() ;
     //         Squash z = new Squash() ;

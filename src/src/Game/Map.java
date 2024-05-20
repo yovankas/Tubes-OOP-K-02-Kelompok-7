@@ -232,7 +232,7 @@ public class Map implements TimeObserver {
         if (elapsedTime % 1 == 0) {
             new MapMover(map).moveZombies(elapsedTime);
         }
-        if (elapsedTime % 1 == 0) {
+        if (elapsedTime % 10 == 0) {
             printMap();
         }
     }

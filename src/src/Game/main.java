@@ -2,13 +2,11 @@ package src.Game;
 
 import java.util.Scanner;
 
-import src.Exception.InvalidIndexException;
-import src.Exception.PlantAlreadyInDeckException;
 import src.Exception.WrongCommandException;
 
 public class main {
     //main
-    public static void main(String[] args) throws InvalidIndexException, PlantAlreadyInDeckException {
+    public static void main(String[] args) throws Exception {
         Game game;
         MainMenu mainMenu = new MainMenu();
         Scanner scanner = new Scanner(System.in);
