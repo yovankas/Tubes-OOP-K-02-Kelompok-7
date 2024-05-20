@@ -21,7 +21,6 @@ public class main {
                 if (input.equals("Start")) {
                     game = new Game();
                     game.start(scanner);
-                    break;
                 } else if (input.equals("Help")) {
                     //help
                 } else if (input.equals("Plants List")) {

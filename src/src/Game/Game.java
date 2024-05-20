@@ -1,11 +1,14 @@
 package src.Game;
 
 import java.util.Scanner;
+<<<<<<< Updated upstream
 // import src.Exception.WrongCommandException;
 
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
+=======
+>>>>>>> Stashed changes
 import src.Plants.Peashooter;
 
 public class Game implements TimeObserver{
@@ -124,7 +127,6 @@ public class Game implements TimeObserver{
             Peashooter x = new Peashooter() ;
             inventory.getDeck().tanam(x, 3, 1);
             
-        scanner.close();
     }
 
     @Override
