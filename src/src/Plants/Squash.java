@@ -25,6 +25,7 @@ public class Squash extends Plant {
         if (getAttack_Damage() == 0 || (System.currentTimeMillis() - getLastAttackTime())/1000 >= getAttack_Speed()){
             setLastAttackTime(System.currentTimeMillis());
             zombie.setHealth(zombie.getHealth() - attack_damage);
+            setHealth(0);
         }
     }
 }
