@@ -4,13 +4,21 @@ public abstract class Plant extends Creatures {
     private final int range ;
     private final int cooldown ;
     private final int cost ;
-    private long lastPlantedTime;
+    private static long lastPlantedTime;
 
     public Plant(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown){
         super(name, health, attack_damage, attack_speed);
         this.cost = cost;
         this.range = range ;
         this.cooldown = cooldown ;
+    }
+
+    private void setLastPlantedTime() {
+        lastPlantedTime = System.currentTimeMillis();
+    }
+
+    private long getLastPlantedTime() {
+        return lastPlantedTime;
     }
 
     public int getCost() {

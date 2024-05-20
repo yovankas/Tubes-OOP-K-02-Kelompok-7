@@ -51,7 +51,9 @@ public class Game implements TimeObserver{
     }
 
     public void gameDisplay(){
-
+        gameTimer.printTime();
+        map.printMap();
+        sun.printSun();
     }
     //main
     // public static void main(String[] args) {
@@ -121,6 +123,7 @@ public class Game implements TimeObserver{
         }
 
         //start
+<<<<<<< Updated upstream
         gameTimer.start();  
         while (true) {
             try {
@@ -147,6 +150,18 @@ public class Game implements TimeObserver{
             }
         }
         
+=======
+        gameTimer.start();   
+
+        while(!joever){
+            if (scanner.next() == "\n"){
+
+            } else {
+
+            }
+            gameDisplay();
+        }
+>>>>>>> Stashed changes
     }   
     //         Repeater y = new Repeater();
     //         Peashooter x = new Peashooter() ;

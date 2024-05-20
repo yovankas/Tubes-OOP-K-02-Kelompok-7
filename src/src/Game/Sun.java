@@ -36,6 +36,9 @@ public class Sun implements TimeObserver {
                 delay = 5 + random.nextInt(5);
             }
         }
-        System.out.print("\rSun: " + amount); //print sun (HANYA UNTUK TESTING)
+    }
+
+    public void printSun() {
+        System.out.println("Sun: " + amount);
     }
 }

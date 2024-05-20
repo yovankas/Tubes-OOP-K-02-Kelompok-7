@@ -205,7 +205,7 @@ public class Map implements TimeObserver {
                 }
                 System.out.println();
             }
-            System.out.println("\n");
+            // System.out.println("\n");
         }
     }
 
@@ -232,9 +232,12 @@ public class Map implements TimeObserver {
         if (elapsedTime % 1 == 0) {
             new MapMover(map).moveZombies(elapsedTime);
         }
+<<<<<<< Updated upstream
         if (elapsedTime % 10 == 0) {
             printMap();
         }
+=======
+>>>>>>> Stashed changes
     }
 
     // public static void main(String[] args) {
