@@ -49,13 +49,20 @@ public class Deck {
         if (isEmpty()) {
             System.out.println("Deck kosong");
         } else {
+            // Menampilkan header tabel dengan pembatas antar kolom
+            System.out.printf("| %-5s | %-15s |%n", "No", "Nama Tanaman");
+            System.out.println("---------------------------");
+            
             for (int i = 0; i < DECK_SIZE; i++) {
                 if (deck[i] != null) {
-                    System.out.println((i + 1) + ". " + deck[i].getName());
+                    System.out.printf("| %-5d | %-15s |%n", (i + 1), deck[i].getName());
                 } else {
-                    System.out.println((i + 1) + " Slot kosong");
+                    System.out.printf("| %-5d | %-15s |%n", (i + 1), "Slot kosong");
                 }
+                // Menambahkan pembatas antar baris
+                
             }
+            System.out.println("---------------------------");
         }
     }
 

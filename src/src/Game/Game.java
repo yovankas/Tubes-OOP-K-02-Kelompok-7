@@ -4,10 +4,7 @@ import java.util.Scanner;
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
-import src.Plants.Lilypad;
-import src.Plants.Peashooter;
-import src.Plants.Repeater;
-import src.Plants.Squash;
+
 
 public class Game implements TimeObserver{
     GameTimer gameTimer;
