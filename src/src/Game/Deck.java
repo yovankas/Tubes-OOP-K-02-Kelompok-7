@@ -55,6 +55,7 @@ public class Deck {
             
             for (int i = 0; i < DECK_SIZE; i++) {
                 if (deck[i] != null) {
+                    deck[i].isReady();
                     System.out.printf("| %-5d | %-15s |%n", (i + 1), deck[i].getName());
                 } else {
                     System.out.printf("| %-5d | %-15s |%n", (i + 1), "Slot kosong");
@@ -82,7 +83,7 @@ public class Deck {
     public void tanam(Plant plant, int x, int y, Sun sun) throws Exception{
         
         // Pastikan koordinat valid
-        if (x >= 0 && x < 11 && y >= 0 && y < 6) {
+        if (x >= 0 && x < 11 && y >= 0 && y < 6 && plant.isReady()) {
             Tile target = map.get(y).get(x);
             if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
                 // Tanaman biasa di tanah
@@ -90,6 +91,7 @@ public class Deck {
                 if (ground.getPlant() == null && sun.getSun() >= plant.getCost()){
                     ground.addPlant(plant);
                     sun.decreaseSunAmount(plant.getCost());
+                    plant.setLastPlantedTime();
                 } else if (ground.getPlant() == null && sun.getSun() < plant.getCost()) {
                     throw new Exception ("Sun tidak mencukupi") ;
                 }                    
@@ -106,6 +108,7 @@ public class Deck {
                         Lilypad lily = (Lilypad) plant;
                         water.addLilypad(lily);
                         sun.decreaseSunAmount(plant.getCost());
+                        plant.setLastPlantedTime();
                     }
                     else {
                         throw new Exception("Sun tidak mencukupi") ;
@@ -115,6 +118,7 @@ public class Deck {
                     if (sun.getSun() >= lilypad.getPlant().getCost()) {
                         lilypad.addPlant(plant);
                         sun.decreaseSunAmount(lilypad.getPlant().getCost());
+                        plant.setLastPlantedTime();
                     } else {
                         throw new Exception("Sun tidak mencukupi") ;
                     }
