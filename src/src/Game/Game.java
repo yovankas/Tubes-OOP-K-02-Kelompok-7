@@ -125,8 +125,8 @@ public class Game implements TimeObserver{
 
         //start
         gameTimer.start(); 
-        // Snowpea snowpea = new Snowpea();
-        // inventory.getDeck().tanam(snowpea, 2, 3, sun);
+        Snowpea snowpea = new Snowpea();
+        inventory.getDeck().tanam(snowpea, 2, 3, sun);
         while (true) {
             String[] cmd = scanner.nextLine().split(" ");
             try {
