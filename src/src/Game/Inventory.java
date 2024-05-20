@@ -17,8 +17,8 @@ public class Inventory {
     private ArrayList<Plant> inventory ;
     private Deck deck ;
 
-    public Inventory () {
-        deck = new Deck() ;
+    public Inventory (Deck deck) {
+        this.deck = deck ;
         this.inventory = new ArrayList<>() ;
         Plant lilypad = new Lilypad();
         Plant magnetshroom = new Magnetshroom();

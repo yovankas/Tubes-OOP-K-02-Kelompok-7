@@ -16,9 +16,10 @@ public class Deck {
     private int plantCount;
     private List<List<Tile>> map;
 
-    public Deck() {
+    public Deck(Map gamemap) {
         deck = new Plant[DECK_SIZE];
         plantCount = 0;
+        map = gamemap.getMap() ;
     }
 
     public Plant[] getDeck() {
@@ -74,7 +75,7 @@ public class Deck {
     public void tanam(Plant plant, int x, int y) {
         // Pastikan koordinat valid
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
-            Tile target = map.get(x).get(y);
+            Tile target = map.get(y).get(x);
             if (!(plant instanceof Lilypad) && target instanceof GroundTile) {
                 // Tanaman biasa di tanah
                 GroundTile ground = (GroundTile) target;
@@ -90,7 +91,7 @@ public class Deck {
                 if (water.getLilypad() == null && plant instanceof Lilypad){ // Tidak ada lilypad di tile target
                     Lilypad lily = (Lilypad) plant;
                     water.addLilypad(lily);
-                } else if (water.getLilypad().getPlant() == null){ // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
+                } else if (water.getLilypad() != null && water.getLilypad().getPlant() == null){ // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
                     Lilypad lilypad = (Lilypad) water.getLilypad();
                     lilypad.addPlant(plant);
                 } else { // Sudah ada tanaman di lilypad

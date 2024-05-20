@@ -193,6 +193,11 @@ public class Map implements TimeObserver {
                         for (Zombie zombie : zombiesOnTile) {
                             System.out.print("Z");
                         }
+                        // if (zombiesOnTile.size() > 1) {
+                        //     System.out.print("Z");
+                        // } else {
+                        //     System.out.print("z");
+                        // }
                         System.out.print(" ");
                     } else {
                         System.out.print(". "); // Empty tile representation

@@ -24,7 +24,7 @@ public class GameLogic implements visitor, TimeObserver {
         gameTimer.addObserver(this);
     } 
 
-    public void deadZombieCollector(Tile tile){
+    public synchronized void deadZombieCollector(Tile tile){
         List<Zombie> zombies = tile.getZombie();
         for (Zombie zombie : zombies) {
             if (zombie.getHealth() <= 0) {
