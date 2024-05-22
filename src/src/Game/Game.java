@@ -7,7 +7,9 @@ import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
 import src.Exception.WrongCommandException;
+import src.Plants.Peashooter;
 import src.Plants.Snowpea;
+import src.Plants.Squash;
 
 
 public class Game implements TimeObserver{
@@ -99,13 +101,15 @@ public class Game implements TimeObserver{
             scanner.nextLine();
             try {
                 inventory.addPlantToDeck(i);
-            } catch (InvalidIndexException e) {
-                System.out.println("Indeks tidak valid: " + e.getMessage());
-            } catch (FullDeckException e) {
-                System.out.println("Deck sudah penuh: " + e.getMessage());
-            } catch (PlantAlreadyInDeckException e) {
-                System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
-            } catch (Exception e) {
+            } 
+            // catch (InvalidIndexException e) {
+            //     System.out.println("Indeks tidak valid: " + e.getMessage());
+            // } catch (FullDeckException e) {
+            //     System.out.println("Deck sudah penuh: " + e.getMessage());
+            // } catch (PlantAlreadyInDeckException e) {
+            //     System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
+            // } 
+            catch (Exception e) {
                 System.out.println("Kesalahan: " + e.getMessage());
             }
         }
@@ -125,9 +129,11 @@ public class Game implements TimeObserver{
 
         //start
         gameTimer.start(); 
-        Snowpea snowpea = new Snowpea();
-        inventory.getDeck().tanam(snowpea, 2, 3, sun);
+        Squash snowpea = new Squash();
+
+        inventory.getDeck().tanam(snowpea, 8, 1, sun);
         while (true) {
+            inventory.getDeck().showDeck();
             String[] cmd = scanner.nextLine().split(" ");
             try {
                 if (cmd[0].equals("T")) {
@@ -141,10 +147,11 @@ public class Game implements TimeObserver{
                     int ygali = Integer.parseInt(cmd[2]);
                     inventory.getDeck().gali(xgali, ygali);
                 } else throw new WrongCommandException();
-            } catch (WrongCommandException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            break ;
+            gameDisplay();}
+           // break ;
         }
 
         // Menerima inputan cara kedua
@@ -176,40 +183,16 @@ public class Game implements TimeObserver{
         
     //  gameTimer.start();   
 
-        while(!joever){
-            if (scanner.next() == "\n"){
+    //     while(!joever){
+    //         if (scanner.next() == "\n"){
 
-            } else {
+    //         } else {
 
-            }
-            gameDisplay();
-        }
-    }   
-    //         Repeater y = new Repeater();
-    //         Peashooter x = new Peashooter() ;
-    //         Squash z = new Squash() ;
-    //         Lilypad l = new Lilypad() ;
-    //         l.addPlant(y);
-    //         try {
-    //         inventory.getDeck().tanam(z, 3, 1, sun);
-    //         //inventory.getDeck().tanam(y, 4, 0, sun);
+    //         }
+    //         gameDisplay();
     //     }
-    //         // inventory.getDeck().tanam(y, 4, 1, sun);
-    //         // inventory.getDeck().tanam(y, 4, 4, sun);
-    //         // inventory.getDeck().tanam(y, 4, 5, sun);
-    //         // inventory.getDeck().tanam(x, 5, 0, sun);
-    //         // inventory.getDeck().tanam(x, 5, 1, sun);
-    //         // inventory.getDeck().tanam(x, 5, 4, sun);
-    //         // inventory.getDeck().tanam(x, 5, 5, sun);
-    //         // inventory.getDeck().tanam(z, 5, 0, sun);
-    //         // inventory.getDeck().tanam(z, 5, 1, sun);
-    //         // inventory.getDeck().tanam(z, 5, 4, sun);
-    //         // inventory.getDeck().tanam(z, 5, 5, sun);
-    //         // inventory.getDeck().tanam(l, 5, 2, sun);
-    //         // inventory.getDeck().tanam(l, 5, 3, sun);}
-    //         catch(Exception e){System.out.println(e.getMessage());} ;
-            
-    // }
+    // }   
+
 
     @Override
     public void update(long elapsedTime) {

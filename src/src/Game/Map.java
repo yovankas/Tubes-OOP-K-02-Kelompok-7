@@ -184,9 +184,9 @@ public class Map implements TimeObserver {
                         System.out.print("G ");
                     }
                     if (map.get(i).get(j) instanceof GroundTile && ((GroundTile)map.get(i).get(j)).getPlant() != null) {
-                        System.out.print("P");
+                        System.out.print("P ");
                     } else if (map.get(i).get(j) instanceof WaterTile && ((WaterTile)map.get(i).get(j)).getLilypad() != null) {
-                        System.out.print("P");
+                        System.out.print("P ");
                     }
                     List<Zombie> zombiesOnTile = map.get(i).get(j).getZombie();
                     if (!zombiesOnTile.isEmpty()) {
@@ -199,7 +199,7 @@ public class Map implements TimeObserver {
                         //     System.out.print("z");
                         // }
                         System.out.print(" ");
-                    } else {
+                    } else if (zombiesOnTile.isEmpty() && map.get(i).get(j).getPlant() == null){
                         System.out.print(". "); // Empty tile representation
                     }
                 }

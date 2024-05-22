@@ -95,7 +95,7 @@ public class Deck {
                     throw new Exception ("Sun tidak mencukupi") ;
                 }                    
                     else {
-                    System.out.println("Tile sudah ditempati.");
+                    throw new Exception("Tile sudah ditempati.");
                 }
             }   
             else if (target instanceof WaterTile) {
@@ -122,19 +122,21 @@ public class Deck {
                             throw new Exception("Sun tidak mencukupi") ;
                         }
                 }   else if (water.getLilypad() != null && water.getLilypad().getPlant() != null ){ // Sudah ada tanaman di lilypad
-                        System.out.println("Sudah ada tanaman di Lilypad");
+                        throw new Exception("Sudah ada tanaman di Lilypad");
                 }
                     else if (water.getLilypad() == null && !(plant instanceof Lilypad)) { // Ga ada Lilypad jadi ga bisa tanam 
-                        System.out.println("Tidak bisa tanam, tidak ada Lilypad");
+                        throw new Exception("Tidak bisa tanam, tidak ada Lilypad");
                     }
                 }
             //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
              else {
-                System.out.println("Tidak bisa tanam di sini.");
+                throw new Exception("Tidak bisa tanam di sini.");
             }
+        } else if (! plant.isReady()) {
+            throw new Exception("Waktu cooldown belum selesai.");
         } 
          else {
-            System.out.println("Koordinat tidak valid.");
+            throw new Exception("Koordinat tidak valid.");
         }
     }
     

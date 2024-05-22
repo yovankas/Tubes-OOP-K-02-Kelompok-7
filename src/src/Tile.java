@@ -8,6 +8,7 @@ public class Tile implements visitable {
     private int x;
     private int y;
     private ArrayList<Zombie> listOfZombies;
+    private Plant plant ;
 
     //constructor
     public Tile(int x, int y){
@@ -16,6 +17,9 @@ public class Tile implements visitable {
         listOfZombies = new ArrayList<>();
     }
 
+    public Plant getPlant() {
+        return plant ;
+    }
     //get zombie
     public ArrayList<Zombie> getZombie(){
         return listOfZombies;
