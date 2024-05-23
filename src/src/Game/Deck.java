@@ -101,7 +101,7 @@ public class Deck {
             else if (target instanceof WaterTile) {
                 // Lilypad di air
                 WaterTile water = (WaterTile) target;
-                if (water.getLilypad() == null && plant instanceof Lilypad ){ 
+                if (water.getLilypad() == null && plant instanceof Lilypad){ 
                 // Tidak ada lilypad di tile target
                     if (sun.getSun() >= plant.getCost()) {
                         Lilypad lily = (Lilypad) plant;

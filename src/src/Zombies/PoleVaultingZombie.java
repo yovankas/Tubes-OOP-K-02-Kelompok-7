@@ -9,9 +9,6 @@ public class PoleVaultingZombie extends Zombie{
         super("Pole Vaulting Zombie", 175, 100, 1, 10, false, true, false);
     }
 
-    public void jumpOver() {
-        // Belum diisi
-    }
 
     @Override
     public void printInfo() {

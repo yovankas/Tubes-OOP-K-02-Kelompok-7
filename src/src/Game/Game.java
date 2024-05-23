@@ -129,9 +129,10 @@ public class Game implements TimeObserver{
 
         //start
         gameTimer.start(); 
-        Squash snowpea = new Squash();
-
-        inventory.getDeck().tanam(snowpea, 8, 1, sun);
+        try {
+            Snowpea snowpea = new Snowpea();
+            inventory.getDeck().tanam(snowpea, 1, 5, sun);
+        } catch (Exception f) {System.out.println(f.getMessage());}
         while (true) {
             inventory.getDeck().showDeck();
             String[] cmd = scanner.nextLine().split(" ");
@@ -149,7 +150,9 @@ public class Game implements TimeObserver{
                 } else throw new WrongCommandException();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            }
+            } // catch (Exception e) {
+            //     System.out.println(e.getMessage());
+            // }
             gameDisplay();}
            // break ;
         }
