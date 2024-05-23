@@ -54,6 +54,14 @@ public class Game {
         sun.printSun();
     }
 
+    public void gameHelp(){
+        System.out.println("Here are the available commands:");
+        System.out.println("M - Show Map");
+        System.out.println("D - Show Deck");
+        System.out.println("T <X> <Y> <Deck No> - Plant lalapan from deck number <Deck No> to Tile (X, Y)");
+        System.out.println("G <X> <Y> - Remove lalapan from Tile (X, Y)");
+    }
+
 
     public void start(Scanner scanner) throws Exception {
         while (!(inventory.getDeck().isDeckFull())) {
@@ -89,23 +97,27 @@ public class Game {
         while (!joever) {
             String[] cmd = scanner.nextLine().split(" ");
             try {
-                if (cmd[0].equalsIgnoreCase("T")) {
+                if (cmd[0].equalsIgnoreCase("T") || cmd[0].equalsIgnoreCase("tanam")) {
                     int xtanam = Integer.parseInt(cmd[1]);
                     int ytanam = Integer.parseInt(cmd[2]);
                     int indeksplant = Integer.parseInt(cmd[3]);
                     Plant plant = inventory.getDeck().getDeck()[indeksplant-1];
                     inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
                     gameDisplay();
-                } else if (cmd[0].equalsIgnoreCase("G")) {
+                } else if (cmd[0].equalsIgnoreCase("G") || cmd[0].equalsIgnoreCase("gali")) {
                     int xgali = Integer.parseInt(cmd[1]);
                     int ygali = Integer.parseInt(cmd[2]);
                     inventory.getDeck().gali(xgali, ygali);
                     gameDisplay();
-                } else if(cmd[0].equalsIgnoreCase("D")){
+                } else if(cmd[0].equalsIgnoreCase("D") || cmd[0].equalsIgnoreCase("deck")){
                     inventory.getDeck().showDeck();
-                } else if(cmd[0].equalsIgnoreCase("M")){
+                } else if(cmd[0].equalsIgnoreCase("M") || cmd[0].equalsIgnoreCase("map")){
                     gameDisplay();
-                } else throw new WrongCommandException();
+                } else if(cmd[0].equalsIgnoreCase("H") || cmd[0].equalsIgnoreCase("help")){
+                    gameHelp();
+                } else {
+                    throw new WrongCommandException();
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
