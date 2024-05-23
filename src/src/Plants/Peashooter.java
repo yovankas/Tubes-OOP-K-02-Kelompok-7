@@ -29,22 +29,5 @@ public class Peashooter extends Plant {
         }
     } 
 
-    // public static void main(String[] args) {
-    //     Peashooter x = new Peashooter() ;
-    //     NormalZombie y = new NormalZombie();
-    // //    System.out.println(y.getHealth());
-    //     x.attack(y);
-    // //    System.out.println(y.getHealth());
-    //     BucketheadZombie a = new BucketheadZombie() ;
-    //     System.out.println(a.getIron_health());
-    //     System.out.println(a.stillHasIron());
-    //     x.attack(a);
-    //     System.out.println(a.getIron_health());
-    //     System.out.println(a.getHealth());
-    //     a.setIron_health(25);
-    //     x.attack(a);
-    //     a.printInfo();
-    //     x.attack(a);
-    //     a.printInfo();
-    // }
+
 }

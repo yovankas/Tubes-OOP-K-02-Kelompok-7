@@ -7,7 +7,6 @@ import src.Plants.Lilypad;
 import src.Tile;
 import src.Tiles.GroundTile;
 import src.Tiles.WaterTile;
-// import java.lang.Exception;
 
 public class Deck {
     
@@ -141,7 +140,7 @@ public class Deck {
     }
     
 
-    public void gali(int x, int y) {
+    public void gali(int x, int y) throws Exception{
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
             Tile target = map.get(x).get(y);
             Plant plant;
@@ -152,7 +151,7 @@ public class Deck {
                     ground.removePlant();
                     System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
                 } else {
-                    System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                    throw new Exception("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
                 }                
             } else if (target instanceof WaterTile) {
                 WaterTile water = (WaterTile) target;
@@ -161,11 +160,11 @@ public class Deck {
                     water.removeLilypad();
                     System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
                 } else {
-                    System.out.println("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                    throw new Exception("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
                 }                
             }
         } else {
-            System.out.println("Invalid coordinates (" + x + ", " + y + ")");
+            throw new Exception("Invalid coordinates (" + x + ", " + y + ")");
         }
     }
 

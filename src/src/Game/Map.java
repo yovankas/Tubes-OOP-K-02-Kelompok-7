@@ -256,10 +256,5 @@ public class Map implements TimeObserver {
         }
     }
 
-    // public static void main(String[] args) {
-    //     GameTimer timer = new GameTimer();
-    //     Map map = new Map(timer);
-    //     timer.start();
-    // }
 
 }
