@@ -27,6 +27,7 @@ public class Lilypad extends Plant {
 
     public void addPlant(Plant plant) {
         this.plant = plant;
+        this.setRange(plant.getRange());
         this.setHealth(plant.getHealth()+this.getHealth());
     }
 

@@ -1,7 +1,7 @@
 package src;
 
 public abstract class Plant extends Creatures {
-    private final int range ;
+    private int range ;
     private final int cooldown ; //in seconds
     private final int cost ;
     private static long lastPlantedTime;
@@ -32,6 +32,10 @@ public abstract class Plant extends Creatures {
 
     public int getRange() {
         return range ;
+    }
+
+    public void setRange(int range) {
+        this.range = range ;
     }
 
     public int getCooldown() {
