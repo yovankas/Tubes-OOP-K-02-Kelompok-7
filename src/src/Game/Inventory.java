@@ -1,13 +1,12 @@
 package src.Game;
 
-import src.Plant;
+import java.util.ArrayList;
+import java.util.Scanner;
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
+import src.Plant;
 import src.Plants.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.lang.Exception;
 
 
 
@@ -130,6 +129,7 @@ public class Inventory {
         Scanner scanner = new Scanner(System.in);
         boolean stillChange = true;
         while (stillChange) {
+            System.out.println();
             getDeck().showDeck();
             System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
             int deckIndex = scanner.nextInt();
