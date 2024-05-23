@@ -143,6 +143,11 @@ class MapMover {
 }
 
 public class Map implements TimeObserver {
+    public static final String RESET = "\u001B[0m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PINK = "\u001B[35m";
+    public static final String BROWN = "\u001B[33m";
     private final int length = 11;
     private final int width = 6;
     private List<List<Tile>> map;
@@ -174,40 +179,57 @@ public class Map implements TimeObserver {
         synchronized (map) {
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < length; j++) {
-                    if (map.get(i).get(j) instanceof BaseTile) {
-                        System.out.print("B ");
-                    } else if (map.get(i).get(j) instanceof SpawnTile) {
-                        System.out.print("S ");
-                    } else if (map.get(i).get(j) instanceof WaterTile) {
-                        System.out.print("W ");
-                    } else if (map.get(i).get(j) instanceof GroundTile) {
-                        System.out.print("G ");
+                    Tile tile = map.get(i).get(j);
+                    StringBuilder tileRepresentation = new StringBuilder();
+
+                    if (tile instanceof GroundTile) {
+                        tileRepresentation.append(GREEN + "[ ");
+                    } else if (tile instanceof WaterTile) {
+                        tileRepresentation.append(BLUE + "{ ");
+                    } else if (tile instanceof BaseTile) {
+                        tileRepresentation.append(PINK + "| ");
+                    } else if (tile instanceof SpawnTile) {
+                        tileRepresentation.append(BROWN + "( ");
                     }
-                    if (map.get(i).get(j) instanceof GroundTile && ((GroundTile)map.get(i).get(j)).getPlant() != null) {
-                        System.out.print("P ");
-                    } else if (map.get(i).get(j) instanceof WaterTile && ((WaterTile)map.get(i).get(j)).getLilypad() != null) {
-                        System.out.print("P ");
+
+                    if (tile instanceof GroundTile && ((GroundTile) tile).getPlant() != null) {
+                        tileRepresentation.append("P ");
+                    } else if (tile instanceof WaterTile && ((WaterTile) tile).getLilypad() != null) {
+                        tileRepresentation.append("P ");
                     }
-                    List<Zombie> zombiesOnTile = map.get(i).get(j).getZombie();
-                    if (!zombiesOnTile.isEmpty()) {
-                        for (Zombie zombie : zombiesOnTile) {
-                            System.out.print("Z");
-                        }
-                        // if (zombiesOnTile.size() > 1) {
-                        //     System.out.print("Z");
-                        // } else {
-                        //     System.out.print("z");
-                        // }
-                        System.out.print(" ");
-                    } else if (zombiesOnTile.isEmpty() && map.get(i).get(j).getPlant() == null){
-                        System.out.print(". "); // Empty tile representation
+
+                    List<Zombie> zombiesOnTile = tile.getZombie();
+                    for (Zombie zombie : zombiesOnTile) {
+                        tileRepresentation.append("Z ");
                     }
+
+                    if (tileRepresentation.length() == 2 + GREEN.length()) { // No plants or zombies for GroundTile
+                        tileRepresentation.append(". ");
+                    } else if (tileRepresentation.length() == 2 + BLUE.length()) { // No plants or zombies for WaterTile
+                        tileRepresentation.append(". ");
+                    } else if (tileRepresentation.length() == 2 + PINK.length()) { // No plants or zombies for BaseTile
+                        tileRepresentation.append(". ");
+                    } else if (tileRepresentation.length() == 2 + BROWN.length()) { // No plants or zombies for SpawnTile
+                        tileRepresentation.append(". ");
+                    }
+
+                    if (tile instanceof GroundTile) {
+                        tileRepresentation.append("]" + RESET);
+                    } else if (tile instanceof WaterTile) {
+                        tileRepresentation.append("}" + RESET);
+                    } else if (tile instanceof BaseTile) {
+                        tileRepresentation.append("|" + RESET);
+                    } else if (tile instanceof SpawnTile) {
+                        tileRepresentation.append(")" + RESET);
+                    }
+
+                    System.out.print(tileRepresentation.toString() + "   ");
                 }
                 System.out.println();
             }
-            // System.out.println("\n");
         }
     }
+    
 
     //getMap
     public List<List<Tile>> getMap() {

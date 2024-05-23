@@ -1,5 +1,6 @@
 package src.Game;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import src.Plant;
@@ -44,7 +45,6 @@ public class Game implements TimeObserver{
         gameTimer.stop();
         joever = true ;
         System.out.println("Game Over");
-
     }
 
     public void Win() {
@@ -97,19 +97,14 @@ public class Game implements TimeObserver{
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
             System.out.println("Masukkan angka tanaman untuk dimasukkan ke Deck: ");
-            int i = scanner.nextInt();
-            scanner.nextLine();
             try {
+                int i = scanner.nextInt();
+                scanner.nextLine();
                 inventory.addPlantToDeck(i);
-            } 
-            // catch (InvalidIndexException e) {
-            //     System.out.println("Indeks tidak valid: " + e.getMessage());
-            // } catch (FullDeckException e) {
-            //     System.out.println("Deck sudah penuh: " + e.getMessage());
-            // } catch (PlantAlreadyInDeckException e) {
-            //     System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
-            // } 
-            catch (Exception e) {
+            } catch (InputMismatchException e) {
+                System.out.println("Input harus berupa integer. Silakan coba lagi.");
+                scanner.nextLine(); 
+            } catch (Exception e) {
                 System.out.println("Kesalahan: " + e.getMessage());
             }
         }
@@ -129,10 +124,10 @@ public class Game implements TimeObserver{
 
         //start
         gameTimer.start(); 
-        try {
-            Snowpea snowpea = new Snowpea();
-            inventory.getDeck().tanam(snowpea, 1, 5, sun);
-        } catch (Exception f) {System.out.println(f.getMessage());}
+        // try {
+        //     Snowpea snowpea = new Snowpea();
+        //     inventory.getDeck().tanam(snowpea, 1, 5, sun);
+        // } catch (Exception f) {System.out.println(f.getMessage());}
         while (true) {
             inventory.getDeck().showDeck();
             String[] cmd = scanner.nextLine().split(" ");
