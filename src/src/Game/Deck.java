@@ -115,7 +115,9 @@ public class Deck {
     }
 
     public void tanam(Plant plant, int x, int y, Sun sun) throws Exception{
-        
+        if (plant == null) {
+            return;
+        }
         // Pastikan koordinat valid
         if (x >= 0 && x < 11 && y >= 0 && y < 6 && plant.isReady()) {
             Tile target = map.get(y).get(x);
