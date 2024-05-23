@@ -49,17 +49,23 @@ public class GameLogic implements visitor, TimeObserver {
         }
 
         List<Zombie> zombies = tile.getZombie();
-        for (Zombie zombie : zombies) {
+        Iterator<Zombie> iterator = zombies.iterator();
+        // for (Zombie zombie : zombies) {
+        while (iterator.hasNext()){
+            Zombie zombie = iterator.next();
             if (zombie.getHas_Jump()){
+                //jump
                 Tile jumpTile = map.get(tile.getY()).get(tile.getX()-1);
                 jumpTile.addZombie(zombie);
-                tile.removeZombie(zombie);
-                if (tile instanceof GroundTile){
-                    GroundTile ground = (GroundTile) tile;
-                    ground.removePlant();
-                } else { //WaterTile
+                // tile.removeZombie(zombie);
+                iterator.remove();
+                //kill jumped plant
+                if (jumpTile instanceof GroundTile){
+                    GroundTile ground = (GroundTile) jumpTile;
+                    if (ground.getPlant() != null)ground.removePlant();
+                } else if (jumpTile instanceof  WaterTile){ //WaterTile
                     WaterTile water = (WaterTile) tile;
-                    water.removeLilypad();
+                    if (water.getLilypad() != null)water.removeLilypad();
                 }
             } else {
                 zombie.attack(plant);
@@ -107,7 +113,7 @@ public class GameLogic implements visitor, TimeObserver {
             //look for target
             Tile targetTile = null;
             if (tile.getZombie().isEmpty()){
-                for (int i=tile.getX()+1; i<= range; i++){
+                for (int i=tile.getX()+1; i< range; i++){
                     Tile tempTile = map.get(tile.getY()).get(i);
                     if (!tempTile.getZombie().isEmpty()){
                         targetTile = tempTile;
@@ -166,13 +172,13 @@ public class GameLogic implements visitor, TimeObserver {
         // deadZombieCollector(water);
         //check dead lilypads
         if (water.getLilypad() != null) {
-            if(water.getLilypad().isDead()){//there is dead lilypad
+            if(water.getLilypad().isDead() || water.getLilypad().getPlant().isDead()){//there is dead lilypad
                 water.removeLilypad();
             } else if (!water.getZombie().isEmpty()) { //there is lilypad and zombie
-                zombieAttack(water);
                 if (water.getLilypad().getPlant() != null){ //there is lilypad and plant
                     plantAttack(water);
                 }
+                zombieAttack(water);
             } else { //there is lilypad
                 if (water.getLilypad().getPlant() != null){ //there is lilypad and plant
                     plantAttack(water);
