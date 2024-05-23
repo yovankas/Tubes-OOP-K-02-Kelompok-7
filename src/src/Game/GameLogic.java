@@ -172,7 +172,7 @@ public class GameLogic implements visitor, TimeObserver {
         // deadZombieCollector(water);
         //check dead lilypads
         if (water.getLilypad() != null) {
-            if(water.getLilypad().isDead() || water.getLilypad().getPlant().isDead()){//there is dead lilypad
+            if(water.getLilypad().isDead()){//there is dead lilypad
                 water.removeLilypad();
             } else if (!water.getZombie().isEmpty()) { //there is lilypad and zombie
                 if (water.getLilypad().getPlant() != null){ //there is lilypad and plant
@@ -180,7 +180,8 @@ public class GameLogic implements visitor, TimeObserver {
                 }
                 zombieAttack(water);
             } else { //there is lilypad
-                if (water.getLilypad().getPlant() != null){ //there is lilypad and plant
+                if (water.getLilypad().getPlant() != null){
+                    if (water.getLilypad().getPlant().isDead()) water.removeLilypad(); //there is lilypad and plant
                     plantAttack(water);
                 }
             } 
