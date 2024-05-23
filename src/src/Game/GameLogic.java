@@ -11,7 +11,6 @@ import src.Zombie;
 
 public class GameLogic implements visitor, TimeObserver {
     private final List<List<Tile>> map;
-    int ZombieCount = 0;
     Sun sun;
     Game game;
     Map gameMap;
@@ -32,7 +31,6 @@ public class GameLogic implements visitor, TimeObserver {
             Zombie zombie = iterator.next();
             if (zombie.getHealth() <= 0) {
                 iterator.remove();
-                ZombieCount--;
             }
         }
     }
@@ -197,11 +195,13 @@ public class GameLogic implements visitor, TimeObserver {
 
     @Override
     public void update(long elapsedTime) {
+        int ZombieCount = 0;
         for (int i = 0; i < map.size(); i++) {
             for (int j = 0; j < map.get(i).size(); j++) {
                 Tile tempTile = map.get(i).get(j);
                 deadZombieCollector(tempTile);
                 tempTile.accept(this);
+                ZombieCount += tempTile.getZombie().size();
             }
         }
         if (elapsedTime > 160 && ZombieCount == 0){
