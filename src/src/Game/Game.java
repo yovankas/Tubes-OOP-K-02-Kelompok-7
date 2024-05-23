@@ -95,10 +95,12 @@ public class Game {
                     int indeksplant = Integer.parseInt(cmd[3]);
                     Plant plant = inventory.getDeck().getDeck()[indeksplant-1];
                     inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
+                    gameDisplay();
                 } else if (cmd[0].equalsIgnoreCase("G")) {
                     int xgali = Integer.parseInt(cmd[1]);
                     int ygali = Integer.parseInt(cmd[2]);
                     inventory.getDeck().gali(xgali, ygali);
+                    gameDisplay();
                 } else if(cmd[0].equalsIgnoreCase("D")){
                     inventory.getDeck().showDeck();
                 } else if(cmd[0].equalsIgnoreCase("M")){
