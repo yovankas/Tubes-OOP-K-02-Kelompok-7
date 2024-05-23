@@ -7,7 +7,6 @@ import src.Exception.PlantAlreadyInDeckException;
 import src.Plants.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-// import java.util.Scanner;
 import java.lang.Exception;
 
 
@@ -180,26 +179,6 @@ public class Inventory {
         scanner.close();
     }
 
-    // public static void main(String[] args) {
-    //     Inventory inventory = new Inventory() ;
-    //     Deck deck = new Deck() ;
-    //     Scanner sc = new Scanner(System.in) ;
-    //     inventory.showInventory();
 
-    //     int x = 0 ;
-    //     while (x < 6) {
-    //     System.out.println("masukkan angka tanaman untuk dimasukkan ke deck: ");
-    //     int i = sc.nextInt() ;
-    //     try {
-    //         inventory.addPlantToDeck(i);
-    //         x++ ;
-    //     } catch (Exception e){
-    //         System.out.println(e.getMessage());
-    //     }
-    // }
-
-    //     inventory.deck.showDeck();
-    //     sc.close();
-    // }
 
 }

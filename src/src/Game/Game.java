@@ -8,9 +8,6 @@ import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
 import src.Exception.WrongCommandException;
-import src.Plants.Peashooter;
-import src.Plants.Snowpea;
-import src.Plants.Squash;
 
 
 public class Game implements TimeObserver{
@@ -58,42 +55,9 @@ public class Game implements TimeObserver{
         map.printMap();
         sun.printSun();
     }
-    //main
-    // public static void main(String[] args) {
-    //     MainMenu mainMenu = new MainMenu();
-    //     Scanner scanner = new Scanner(System.in);
 
-    //     while (true) {
-    //         mainMenu.printWelcomeMessage();
-    //         String input = scanner.nextLine();
-
-    //         try {
-    //             if (input.equals("Start")) {
-    //                 start(scanner);
-    //                 break;
-    //             } else if (input.equals("Help")) {
-    //                 //help
-    //             } else if (input.equals("Plants List")) {
-    //                 mainMenu.printListOfPlants();
-    //             } else if (input.equals("Zombies List")) {
-    //                 mainMenu.printListOfZombies();
-    //             } else if (input.equals("Exit")) {
-    //                 mainMenu.printExit();
-    //                 break;
-    //             } else {
-    //                 throw new WrongCommandException();
-    //             }
-    //         } catch (WrongCommandException e) {
-    //             System.out.println(e.getMessage());
-    //         }
-    //     }
-
-    //     scanner.close();
-    // }
 
     public void start(Scanner scanner) throws Exception {
-        //deck
-       // this.deck = new Deck(map);
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
             System.out.println("Masukkan angka tanaman untuk dimasukkan ke Deck: ");
@@ -122,12 +86,8 @@ public class Game implements TimeObserver{
             }
         }
 
-        //start
+
         gameTimer.start(); 
-        // try {
-        //     Snowpea snowpea = new Snowpea();
-        //     inventory.getDeck().tanam(snowpea, 1, 5, sun);
-        // } catch (Exception f) {System.out.println(f.getMessage());}
         while (true) {
             inventory.getDeck().showDeck();
             String[] cmd = scanner.nextLine().split(" ");
@@ -145,51 +105,11 @@ public class Game implements TimeObserver{
                 } else throw new WrongCommandException();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            } // catch (Exception e) {
-            //     System.out.println(e.getMessage());
-            // }
+            } 
             gameDisplay();}
-           // break ;
         }
 
-        // Menerima inputan cara kedua
-        // while (true) {
-        //     try {
-        //         String cmd = scanner.nextLine();
-        //         if (cmd.equals("Tanam")) { 
-        //             System.out.println("Masukkan indeks kolom yang ingin ditanami!");
-        //             int xtanam = scanner.nextInt();
-        //             System.out.println("Masukkan indeks baris yang ingin ditanami!");
-        //             int ytanam = scanner.nextInt();
-        //             inventory.getDeck().showDeck();
-        //             System.out.println("Masukkan indeks jenis tanaman yang ingin ditanam!");
-        //             int indeksplant = scanner.nextInt();
-        //             Plant plant= inventory.getDeck().getDeck()[indeksplant-1];
-        //             inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
-        //         } else if (cmd.equals("Gali")) {
-        //             System.out.println("Masukkan indeks kolom yang ingin digali!");
-        //             int xgali = scanner.nextInt();
-        //             System.out.println("Masukkan indeks baris yang ingin digali!");
-        //             int ygali = scanner.nextInt();
-        //             // inventory.getDeck().tanam(plant, xtanam, ytanam, sun); // method gali
-        //         } else throw new WrongCommandException();
-        //     } catch (WrongCommandException e) {
-        //         System.out.println(e.getMessage());
-        //     }
-        //     break ;
-        // }
-        
-    //  gameTimer.start();   
 
-    //     while(!joever){
-    //         if (scanner.next() == "\n"){
-
-    //         } else {
-
-    //         }
-    //         gameDisplay();
-    //     }
-    // }   
 
 
     @Override
