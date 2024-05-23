@@ -15,27 +15,12 @@ class MapSpawner {
     private int MAX_ZOMBIES = 10;
     private double SPAWN_PROBABILITY = 0.3;
     private long lastSpawnTime = 0;
-    private boolean flag = false;
 
     public MapSpawner(List<List<Tile>> map) {
         this.map = map;
         this.random = new Random();
     }
 
-    private  void Flag(){
-        MAX_ZOMBIES = 25;
-        SPAWN_PROBABILITY = 0.5;
-        System.out.println("===FLAG WARNING !!!===");
-        System.out.println("Zombies are coming in hordes!");
-        flag = true;
-    }
-
-    private  void removeFlag(){
-        MAX_ZOMBIES = 10;
-        SPAWN_PROBABILITY = 0.3;
-        System.out.println("Zombies are back to normal");
-        flag = false;
-    }
 
     public void spawnZombies(long elapsedTime) {
         int totalZombies = getTotalZombies();
@@ -43,11 +28,7 @@ class MapSpawner {
 
         if (elapsedTime < 20 || elapsedTime > 160) {
             return; 
-        } else if (elapsedTime >=100 && !flag){
-            Flag();
-        } else if (elapsedTime >= 130 && flag){
-            removeFlag();
-        }
+        } 
         
         int width = map.size();
         int i = random.nextInt(width);
