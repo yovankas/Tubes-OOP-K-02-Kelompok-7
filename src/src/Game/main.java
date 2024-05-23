@@ -11,6 +11,7 @@ public class main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            System.out.println();
             mainMenu.printWelcomeMessage();
             String input = scanner.nextLine();
 
@@ -19,6 +20,7 @@ public class main {
                     game = new Game();
                     game.start(scanner);
                 } else if (input.equalsIgnoreCase("Help")) {
+                    System.out.println();
                     mainMenu.printHelp();
                 } else if (input.equalsIgnoreCase("Plants List") || input.equalsIgnoreCase("pl")) {
                     mainMenu.printListOfPlants();

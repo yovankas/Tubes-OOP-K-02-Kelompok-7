@@ -39,12 +39,15 @@ public class Game {
     public void GameOver() {
         gameTimer.stop();
         joever = true ;
+        System.out.println();
         System.out.println("Game Over");
+        System.out.println("Press any key to exit...");
     }
 
     public void Win() {
         gameTimer.stop();
         joever = true;
+        System.out.println();
         System.out.println("You Win!");
     }
 
@@ -116,7 +119,7 @@ public class Game {
                 } else if(cmd[0].equalsIgnoreCase("H") || cmd[0].equalsIgnoreCase("help")){
                     gameHelp();
                 } else {
-                    throw new WrongCommandException();
+                    if (!joever) throw new WrongCommandException();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
