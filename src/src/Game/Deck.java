@@ -113,7 +113,7 @@ public class Deck {
                     }
                 } else if (water.getLilypad() != null && water.getLilypad().getPlant() == null) { // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
                         Lilypad lilypad = (Lilypad) water.getLilypad();
-                        if (sun.getSun() >= lilypad.getPlant().getCost()) {
+                        if (sun.getSun() >= plant.getCost()) {
                             lilypad.addPlant(plant);
                             sun.decreaseSunAmount(lilypad.getPlant().getCost());
                             plant.setLastPlantedTime();

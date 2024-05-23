@@ -79,7 +79,7 @@ public class GameLogic implements visitor, TimeObserver {
             plant = ground.getPlant();
         } else { //WaterTile
             WaterTile water = (WaterTile) tile;
-            plant = water.getLilypad().getPlant();
+            plant = water.getLilypad();
         }
 
         if (plant instanceof Sunflower || plant instanceof TwinSunflower){
