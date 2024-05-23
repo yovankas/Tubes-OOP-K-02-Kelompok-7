@@ -97,6 +97,8 @@ public class Game {
 
 
         gameTimer.start(); 
+        gameDisplay();
+        deck.showDeck();
         while (!joever) {
             String[] cmd = scanner.nextLine().split(" ");
             try {
