@@ -70,7 +70,6 @@ public class Deck {
         if (i < 0 || i >= DECK_SIZE || deck[i] == null) {
             throw new InvalidIndexException();
         } else {
-            // belum diisi
             return deck[i] ;
         }
     }
