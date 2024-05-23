@@ -2,15 +2,13 @@ package src.Game;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import src.Plant;
-import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
 import src.Exception.PlantAlreadyInDeckException;
 import src.Exception.WrongCommandException;
+import src.Plant;
 
 
-public class Game implements TimeObserver{
+public class Game {
     GameTimer gameTimer;
     Map map;
     Sun sun;
@@ -88,32 +86,27 @@ public class Game implements TimeObserver{
 
 
         gameTimer.start(); 
-        while (true) {
-            inventory.getDeck().showDeck();
+        while (!joever) {
             String[] cmd = scanner.nextLine().split(" ");
             try {
-                if (cmd[0].equals("T")) {
+                if (cmd[0].equalsIgnoreCase("T")) {
                     int xtanam = Integer.parseInt(cmd[1]);
                     int ytanam = Integer.parseInt(cmd[2]);
                     int indeksplant = Integer.parseInt(cmd[3]);
                     Plant plant = inventory.getDeck().getDeck()[indeksplant-1];
                     inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
-                } else if (cmd[0].equals("G")) {
+                } else if (cmd[0].equalsIgnoreCase("G")) {
                     int xgali = Integer.parseInt(cmd[1]);
                     int ygali = Integer.parseInt(cmd[2]);
                     inventory.getDeck().gali(xgali, ygali);
+                } else if(cmd[0].equalsIgnoreCase("D")){
+                    inventory.getDeck().showDeck();
+                } else if(cmd[0].equalsIgnoreCase("M")){
+                    gameDisplay();
                 } else throw new WrongCommandException();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            } 
-            gameDisplay();}
+            }
         }
-
-
-
-
-    @Override
-    public void update(long elapsedTime) {
-        gameDisplay();
     }
 }
