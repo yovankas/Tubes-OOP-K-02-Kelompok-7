@@ -75,7 +75,7 @@ public class Game {
                 System.out.println("Input harus berupa integer. Silakan coba lagi.");
                 scanner.nextLine(); 
             } catch (Exception e) {
-                System.out.println("Kesalahan: " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
 
