@@ -101,7 +101,7 @@ public class Game {
                     int xtanam = Integer.parseInt(cmd[1]);
                     int ytanam = Integer.parseInt(cmd[2]);
                     int indeksplant = Integer.parseInt(cmd[3]);
-                    Plant plant = inventory.getDeck().getDeck()[indeksplant-1];
+                    Plant plant = inventory.getDeck().getNewPlant(indeksplant-1);
                     inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
                     gameDisplay();
                 } else if (cmd[0].equalsIgnoreCase("G") || cmd[0].equalsIgnoreCase("gali")) {
