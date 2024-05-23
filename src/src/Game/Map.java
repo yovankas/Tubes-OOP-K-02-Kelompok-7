@@ -193,14 +193,17 @@ public class Map implements TimeObserver {
                     }
 
                     if (tile instanceof GroundTile && ((GroundTile) tile).getPlant() != null) {
-                        tileRepresentation.append("P ");
+                        tileRepresentation.append("P "+ ((GroundTile) tile).getPlant().getHealth());
                     } else if (tile instanceof WaterTile && ((WaterTile) tile).getLilypad() != null) {
-                        tileRepresentation.append("P ");
+                        if (((WaterTile) tile).getLilypad().getPlant() == null) {
+                            tileRepresentation.append("L "+ ((WaterTile) tile).getLilypad().getHealth());
+                        } else {
+                        tileRepresentation.append("P "+ ((WaterTile) tile).getLilypad().getHealth());}
                     }
 
                     List<Zombie> zombiesOnTile = tile.getZombie();
                     for (Zombie zombie : zombiesOnTile) {
-                        tileRepresentation.append("Z ");
+                        tileRepresentation.append("Z "+ zombie.getHealth());
                     }
 
                     if (tileRepresentation.length() == 2 + GREEN.length()) { // No plants or zombies for GroundTile
