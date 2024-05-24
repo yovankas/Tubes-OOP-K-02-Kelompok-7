@@ -5,7 +5,7 @@ public abstract class Plant extends Creatures {
     private final int cooldown ; //in seconds
     private final int cost ;
     private static long lastPlantedTime;
-    private boolean ready=true;
+    private static boolean ready=true;
 
     public Plant(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown){
         super(name, health, attack_damage, attack_speed);
