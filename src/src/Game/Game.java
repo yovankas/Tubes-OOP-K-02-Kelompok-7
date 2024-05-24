@@ -139,9 +139,18 @@ public class Game {
                     int xtanam = Integer.parseInt(cmd[1]);
                     int ytanam = Integer.parseInt(cmd[2]);
                     int indeksplant = Integer.parseInt(cmd[3]);
-                    Plant plant = inventory.getDeck().getNewPlant(indeksplant-1);
-                    inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
-                    gameDisplay();
+                    try {
+                        Plant plant = inventory.getDeck().getNewPlant(indeksplant-1);
+                        inventory.getDeck().tanam(plant, xtanam, ytanam, sun);
+                        gameDisplay();
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Invalid Deck index: " + (indeksplant));
+                    } catch (NullPointerException e) {
+                        System.out.println("Deck is not properly initialized");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
                 } else if (cmd[0].equalsIgnoreCase("G") || cmd[0].equalsIgnoreCase("gali")) {
                     int xgali = Integer.parseInt(cmd[1]);
                     int ygali = Integer.parseInt(cmd[2]);

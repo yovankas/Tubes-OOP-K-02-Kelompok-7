@@ -1,7 +1,6 @@
 package src.Game;
 
 import java.util.List;
-
 import src.Exception.CantPlantException;
 import src.Exception.CantPlantLilypadException;
 import src.Exception.CooldownNotDoneException;
@@ -36,39 +35,30 @@ public class Deck {
     }
 
     public Plant getNewPlant(int i) {
-        try {
-            String name = deck[i].getName();
-            if (name.equals("Lilypad")) {
-                return new Lilypad();
-            } else if (name.equals("Magnetshroom")) {
-                return new Magnetshroom();
-            } else if (name.equals("Peashooter")) {
-                return new Peashooter();
-            } else if (name.equals("Repeater")) {
-                return new Repeater();
-            } else if (name.equals("Snowpea")) {
-                return new Snowpea();
-            } else if (name.equals("Squash")) {
-                return new Squash();
-            } else if (name.equals("Sunflower")) {
-                return new Sunflower();
-            } else if (name.equals("TwinSunflower")) {
-                return new TwinSunflower();
-            } else if (name.equals("Tallnut")) {
-                return new Tallnut();
-            } else if (name.equals("Wallnut")) {
-                return new Wallnut();
-            } else {
-                throw new IllegalArgumentException("Invalid plant name: " + name);
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Invalid Deck index: " + (i+1));
-        } catch (NullPointerException e) {
-            System.out.println("Deck is not properly initialized");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        String name = deck[i].getName();
+        if (name.equals("Lilypad")) {
+            return new Lilypad();
+        } else if (name.equals("Magnetshroom")) {
+            return new Magnetshroom();
+        } else if (name.equals("Peashooter")) {
+            return new Peashooter();
+        } else if (name.equals("Repeater")) {
+            return new Repeater();
+        } else if (name.equals("Snowpea")) {
+            return new Snowpea();
+        } else if (name.equals("Squash")) {
+            return new Squash();
+        } else if (name.equals("Sunflower")) {
+            return new Sunflower();
+        } else if (name.equals("TwinSunflower")) {
+            return new TwinSunflower();
+        } else if (name.equals("Tallnut")) {
+            return new Tallnut();
+        } else if (name.equals("Wallnut")) {
+            return new Wallnut();
+        } else {
+            throw new IllegalArgumentException("Invalid plant name: " + name);
         }
-        return null;
     }
 
     public boolean isEmpty() {
