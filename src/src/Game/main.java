@@ -26,7 +26,10 @@ public class main {
                     mainMenu.printListOfPlants();
                 } else if (input.equalsIgnoreCase("Zombies List") || input.equalsIgnoreCase("zl")) {
                     mainMenu.printListOfZombies();
-                } else if (input.equalsIgnoreCase("Exit")) {
+                } else if (input.equalsIgnoreCase("Change Inventory")) {
+                    mainMenu.changeInventory();
+                }
+                    else if (input.equalsIgnoreCase("Exit")) {
                     mainMenu.printExit();
                     break;
                 } else {

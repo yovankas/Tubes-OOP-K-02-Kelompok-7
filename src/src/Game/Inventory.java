@@ -52,11 +52,16 @@ public class Inventory {
     public void swapInventory (int x, int y)   {
         if (x < 1 || x > inventory.size() || y < 1 || y > inventory.size()) {
             System.out.println("Indeks tidak valid");
-        } else {
+        } else if (x == y) {
+            System.out.println("Tidak bisa menukar dengan urutan yang sama");
+        }else {
             Plant temp =  inventory.get(x-1) ;
             inventory.set(x-1, inventory.get(y-1)) ;
             inventory.set(y-1, temp) ;
+            System.out.println("Berhasil menukar urutan tanaman.");
+            showInventory();
         }
+        
     }
 
     public void swapDeck (int x, int y) throws InvalidIndexException {

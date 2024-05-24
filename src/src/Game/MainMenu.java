@@ -2,6 +2,7 @@ package src.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import src.Plant;
 import src.Zombie;
@@ -11,8 +12,12 @@ import src.Zombies.*;
 public class MainMenu {
     private List<Zombie> listOfZombies;
     public List<Plant> listOfPlants;
+    Inventory inventory;
+    Deck deck;
 
     public MainMenu() {
+        this.inventory = new Inventory(deck) ;
+
         // Inisialisasi daftar Zombie dan Plant saat objek MainMenu dibuat
         this.listOfZombies = new ArrayList<>();
         this.listOfPlants = new ArrayList<>() ;
@@ -90,7 +95,8 @@ public class MainMenu {
         System.out.println("2. Help");
         System.out.println("3. Plants List");
         System.out.println("4. Zombies List");
-        System.out.println("5. Exit");
+        System.out.println("5. Change Inventory");
+        System.out.println("6. Exit");
     }
 
     public void printExit() {
@@ -107,6 +113,7 @@ public class MainMenu {
         System.out.println("Help - Show available commands");
         System.out.println("Plants List - Show list of available plants");
         System.out.println("Zombies List - Show list of available zombies");
+        System.out.println("Change Inventory - Swap order of plants in inventory");
         System.out.println("Exit - Exit the game");
         System.out.println("===============================================");
         System.out.println("Here are the available commands inside the game:");
@@ -114,5 +121,13 @@ public class MainMenu {
         System.out.println("D - Show Deck");
         System.out.println("T <X> <Y> <Deck No> - Plant lalapan from deck number <Deck No> to Tile (X, Y)");
         System.out.println("G <X> <Y> - Remove lalapan from Tile (X, Y)");
+    }
+
+    public void changeInventory() {
+        Scanner sc = new Scanner(System.in);
+        inventory.showInventory();
+        System.out.println("Masukkan indeks inventory yang akan ditukar dengan format: x y");
+        int x = sc.nextInt(); int y = sc.nextInt();
+        inventory.swapInventory(x,y);
     }
 }
