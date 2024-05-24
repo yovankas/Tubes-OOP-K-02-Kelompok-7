@@ -25,4 +25,3 @@ Pastikan Anda telah menginstal JDK (Java Development Kit) di sistem Anda. Anda d
 
 ---
 
-Semoga panduan ini membantu Anda dalam mengkompilasi dan menjalankan program Java Anda. Jika ada pertanyaan lebih lanjut, jangan ragu untuk menghubungi pengembang.
