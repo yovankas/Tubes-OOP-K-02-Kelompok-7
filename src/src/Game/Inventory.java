@@ -164,9 +164,9 @@ public class Inventory {
                 System.out.println(plantToRemove.getName() + " sudah dihapus dari Deck dan " + plantToAdd.getName() + " ditambahkan ke Deck");
 
             } catch (InvalidIndexException e) {
-                System.out.println("Indeks tidak valid: " + e.getMessage());
+                System.out.println( e.getMessage());
             } catch (PlantAlreadyInDeckException e) {
-                System.out.println("Jenis tanaman sudah ada di dalam Deck: " + e.getMessage());
+                System.out.println( e.getMessage());
             }
             System.out.println("Apakah masih ingin mengganti Deck? (Y/N)");
             String stillChangeStr = scanner.nextLine();
@@ -176,7 +176,6 @@ public class Inventory {
             }
         }
 
-        scanner.close();
     }
 
 
