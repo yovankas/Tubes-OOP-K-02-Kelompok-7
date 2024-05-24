@@ -143,7 +143,7 @@ class MapMover {
     }
 }
 
-public class Map implements TimeObserver {
+class Map implements TimeObserver {
     private final int length = 11;
     private final int width = 6;
     private List<List<Tile>> map;

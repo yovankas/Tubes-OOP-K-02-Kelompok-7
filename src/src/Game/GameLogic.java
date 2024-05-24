@@ -9,7 +9,7 @@ import src.Tile;
 import src.Tiles.*;
 import src.Zombie;
 
-public class GameLogic implements visitor, TimeObserver {
+class GameLogic implements visitor, TimeObserver {
     private final List<List<Tile>> map;
     Sun sun;
     Game game;

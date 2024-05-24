@@ -11,7 +11,7 @@ import src.Plants.*;
 
 
 
-public class Inventory {
+class Inventory {
 
     private ArrayList<Plant> inventory ;
     private Deck deck ;

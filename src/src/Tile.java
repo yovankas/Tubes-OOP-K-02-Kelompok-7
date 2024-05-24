@@ -5,9 +5,9 @@ import src.Game.visitable;
 import src.Game.visitor;
 
 public class Tile implements visitable {
-    private int x;
-    private int y;
-    private ArrayList<Zombie> listOfZombies;
+    private final int x;
+    private final int y;
+    private final ArrayList<Zombie> listOfZombies;
     private Plant plant ;
 
     //constructor

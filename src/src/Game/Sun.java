@@ -2,7 +2,7 @@ package src.Game;
 
 import java.util.Random;
 
-public class Sun implements TimeObserver {
+class Sun implements TimeObserver {
     private int amount = 50;
     private int delay=0;
 

@@ -1,5 +1,6 @@
-package src.Game;
+package src;
 
+import src.Game.*;
 import java.util.Scanner;
 import src.Exception.WrongCommandException;
 

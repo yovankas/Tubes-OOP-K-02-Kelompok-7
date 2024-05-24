@@ -7,11 +7,11 @@ import java.util.TimerTask;
 
 // use observer design pattern to notify other classes about the elapsed time
 // print elapsed time to the console
-public class GameTimer {
-    private Timer timer;
+class GameTimer {
+    private final Timer timer;
     private long startTime;
     private long elapsedTime;
-    private List<TimeObserver> observers; // List of observers
+    private final List<TimeObserver> observers; // List of observers
 
     // Constructor initializing a new Timer
     public GameTimer() {

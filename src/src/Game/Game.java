@@ -44,11 +44,11 @@ public class Game {
     }
 
     //getter
-    public Map getMap() {
+    Map getMap() {
         return this.map;
     }
 
-    public Sun getSun() {
+    Sun getSun() {
         return this.sun;
     }
 

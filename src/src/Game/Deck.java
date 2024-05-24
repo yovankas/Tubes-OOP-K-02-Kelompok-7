@@ -17,7 +17,7 @@ import src.Tile;
 import src.Tiles.GroundTile;
 import src.Tiles.WaterTile;
 
-public class Deck {
+class Deck {
     
     private static final int DECK_SIZE = 6;
     private Plant[] deck;
