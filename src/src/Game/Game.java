@@ -110,21 +110,25 @@ public class Game {
             //         System.out.println("Kesalahan saat mengganti Deck: " + e.getMessage());
             //     }
             // }
+            System.out.println("Deck sudah selesai diisi.");
             while (true) {
-                System.out.println("Deck sudah selesai diisi. Apakah ingin mengganti? (Y/N)");
                 inventory.getDeck().showDeck();
+                System.out.println("(Change) untuk mengganti Deck");
+                System.out.println("(Swap) untuk melakukan swap pada Deck");
+                System.out.println("(Start) untuk melanjutkan ke permainan");
                 String input = scanner.nextLine();
-                if (input.equalsIgnoreCase("N")) {
+                if (input.equalsIgnoreCase("Start")) {
                     break;
-                } else if (input.equalsIgnoreCase("Y")) {
+                } else if (input.equalsIgnoreCase("Change")) {
                     try {
                             inventory.changeDeck(scanner);
                         } catch (InvalidIndexException | PlantAlreadyInDeckException e) {
                             System.out.println("Kesalahan saat mengganti Deck: " + e.getMessage());
                         }
-                    break;
+                } else if (input.equalsIgnoreCase("Swap")) {
+                    inventory.SwapUrutanDeck();
                 } else {
-                    System.out.println("Input tidak valid. Harap masukkan Y/N.");
+                    System.out.println("Input tidak valid. Harap masukkan Change, Swap, atau Continue.");
                 }
             }
         }

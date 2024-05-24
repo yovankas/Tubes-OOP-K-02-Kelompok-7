@@ -66,11 +66,15 @@ public class Inventory {
 
     public void swapDeck (int x, int y) throws InvalidIndexException {
         if (x < 1 || x > deck.getDeck().length || y < 1 || y > deck.getDeck().length) {
-            throw new InvalidIndexException();
-        } else {
+            System.out.println("Indeks tidak valid");
+        } else if (x == y) {
+            System.out.println("Tidak bisa menukar dengan urutan yang sama");
+        }else {
             Plant temp = deck.getDeck()[x-1];
             deck.getDeck()[x-1] = deck.getDeck()[y-1];
             deck.getDeck()[y-1] = temp;
+            System.out.println("Berhasil menukar urutan tanaman.");
+            deck.showDeck();
         }
     }
 
@@ -225,10 +229,24 @@ public class Inventory {
             // String stillChangeStr = scanner.nextLine();
             // if (stillChangeStr.equals("N")) {
             //     stillChange = false;
-            }
         }
-
-        // scanner.close();
     }
+
+    public void SwapUrutanDeck() {
+        Scanner sc = new Scanner(System.in);
+        deck.showDeck();
+        System.out.println("Masukkan indeks deck yang akan ditukar dengan format: x y");
+    
+        try{
+            int x = sc.nextInt(); int y = sc.nextInt();
+            swapDeck(x,y);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter two integers.");
+            sc.nextLine();  // Clear the invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while swapping inventory: " + e.getMessage());
+        }
+    }
+}
 
 
