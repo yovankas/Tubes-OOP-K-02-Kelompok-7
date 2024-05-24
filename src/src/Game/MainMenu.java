@@ -1,12 +1,12 @@
 package src.Game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
 import src.Plant;
-import src.Zombie;
 import src.Plants.*;
+import src.Zombie;
 import src.Zombies.*;
 
 public class MainMenu {
@@ -127,7 +127,15 @@ public class MainMenu {
         Scanner sc = new Scanner(System.in);
         inventory.showInventory();
         System.out.println("Masukkan indeks inventory yang akan ditukar dengan format: x y");
-        int x = sc.nextInt(); int y = sc.nextInt();
-        inventory.swapInventory(x,y);
+    
+        try{
+            int x = sc.nextInt(); int y = sc.nextInt();
+            inventory.swapInventory(x,y);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter two integers.");
+            sc.nextLine();  // Clear the invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while swapping inventory: " + e.getMessage());
+        }
     }
 }
