@@ -85,20 +85,19 @@ public class Deck {
             System.out.println("Deck kosong");
         } else {
             // Menampilkan header tabel dengan pembatas antar kolom
-            System.out.printf("| %-5s | %-15s | %-10s |%n", "No", "Nama Tanaman", "Status");
-            System.out.println("--------------------------------------");
-            
+            System.out.printf("| %-5s | %-15s | %-10s | %-5s |%n", "No", "Nama Tanaman", "Status", "Cost");
+            System.out.println("-----------------------------------------------");
+
             for (int i = 0; i < DECK_SIZE; i++) {
                 if (deck[i] != null) {
                     deck[i].isReady();
-                    System.out.printf("| %-5d | %-15s | %-10s |%n", (i + 1), deck[i].getName(), deck[i].isReady());
+                    System.out.printf("| %-5d | %-15s | %-10s | %-5d |%n", (i + 1), deck[i].getName(), deck[i].isReady(), deck[i].getCost());
                 } else {
-                    System.out.printf("| %-5d | %-15s |%n", (i + 1), "Slot kosong");
+                    System.out.printf("| %-5d | %-15s | %-10s |%n", (i + 1), "Slot kosong", "");
                 }
                 // Menambahkan pembatas antar baris
-                
             }
-            System.out.println("-------------------------------------");
+            System.out.println("-----------------------------------------------");
         }
     }
 
