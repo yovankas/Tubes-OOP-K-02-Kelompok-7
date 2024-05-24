@@ -5,6 +5,8 @@ import src.Zombie;
 
 public class Lilypad extends Plant {
     Plant plant;
+    private static long lastPlantedTime;
+    private static boolean ready=true;
 
     public Lilypad() {
         super("Lilypad", 100, 0, 0, 25, 0, 10);
@@ -33,5 +35,24 @@ public class Lilypad extends Plant {
 
     public Plant getPlant() {
         return plant;
+    }
+
+    @Override
+    public void setLastPlantedTime() {
+        lastPlantedTime = System.currentTimeMillis();
+        ready = false;
+    }
+
+    @Override
+    public boolean isReady(){
+        if ((System.currentTimeMillis() - lastPlantedTime)/1000 >= this.getCooldown()){
+            ready = true;
+        }
+        return ready;
+    }
+
+    @Override
+    public long getLastPlantedTime() {
+        return lastPlantedTime;
     }
 }

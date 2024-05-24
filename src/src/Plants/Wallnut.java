@@ -4,7 +4,8 @@ import src.Plant;
 import src.Zombie;
 
 public class Wallnut extends Plant{
-    
+    private static long lastPlantedTime;
+    private static boolean ready=true;
     public Wallnut() {
         super("Wallnut", 1000, 0, 0, 50, 0, 20);
     }
@@ -27,4 +28,24 @@ public class Wallnut extends Plant{
             zombie.setHealth(zombie.getHealth() - attack_damage);
         }
     } 
+
+    @Override
+    public void setLastPlantedTime() {
+        lastPlantedTime = System.currentTimeMillis();
+        ready = false;
+    }
+
+    @Override
+    public boolean isReady(){
+        if ((System.currentTimeMillis() - lastPlantedTime)/1000 >= this.getCooldown()){
+            ready = true;
+        }
+        return ready;
+    }
+
+    @Override
+    public long getLastPlantedTime() {
+        return lastPlantedTime;
+    }
+
 }

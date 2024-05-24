@@ -4,8 +4,8 @@ public abstract class Plant extends Creatures {
     private int range ;
     private final int cooldown ; //in seconds
     private final int cost ;
-    private static long lastPlantedTime;
-    private static boolean ready=true;
+    // private static long lastPlantedTime;
+    // private static boolean ready=true;
 
     public Plant(String name, int health, int attack_damage, int attack_speed, int cost, int range, int cooldown){
         super(name, health, attack_damage, attack_speed);
@@ -14,17 +14,19 @@ public abstract class Plant extends Creatures {
         this.cooldown = cooldown ;
     }
 
-    public void setLastPlantedTime() {
-        lastPlantedTime = System.currentTimeMillis();
-        ready = false;
-    }
+    public abstract void setLastPlantedTime();
+    // public void setLastPlantedTime() {
+    //     lastPlantedTime = System.currentTimeMillis();
+    //     ready = false;
+    // }
 
-    public boolean isReady(){
-        if ((System.currentTimeMillis() - lastPlantedTime)/1000 >= cooldown){
-            ready = true;
-        }
-        return ready;
-    }
+    public abstract boolean isReady();
+    // public boolean isReady(){
+    //     if ((System.currentTimeMillis() - lastPlantedTime)/1000 >= cooldown){
+    //         ready = true;
+    //     }
+    //     return ready;
+    // }
 
     public int getCost() {
         return cost ;
@@ -43,9 +45,10 @@ public abstract class Plant extends Creatures {
     }
 
     // Getter for lastMoveTime
-    public long getLastPlantedTime() {
-        return lastPlantedTime;
-    }
+    public abstract long getLastPlantedTime();
+    // public long getLastPlantedTime() {
+    //     return lastPlantedTime;
+    // }
 
     public abstract void attack(Zombie zombie);
 }

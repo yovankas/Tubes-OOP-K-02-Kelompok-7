@@ -5,7 +5,9 @@ import src.Zombie;
 
 
 public class Peashooter extends Plant {
-    
+    private static long lastPlantedTime;
+    private static boolean ready=true;
+
     public Peashooter() {
         super("Peashooter", 100, 25, 4, 100, -1, 10);
     }
@@ -30,4 +32,22 @@ public class Peashooter extends Plant {
     } 
 
 
+    @Override
+    public void setLastPlantedTime() {
+        lastPlantedTime = System.currentTimeMillis();
+        ready = false;
+    }
+
+    @Override
+    public boolean isReady(){
+        if ((System.currentTimeMillis() - lastPlantedTime)/1000 >= this.getCooldown()){
+            ready = true;
+        }
+        return ready;
+    }
+
+    @Override
+    public long getLastPlantedTime() {
+        return lastPlantedTime;
+    }
 }
