@@ -153,11 +153,17 @@ public class Inventory {
                 try {
                     System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
                     deckIndex = scanner.nextInt();
-                    scanner.nextLine(); // Clear the newline left by nextInt()
-                    break;
+                    if (deckIndex < 1 || deckIndex > 6){
+                        throw new InvalidIndexException();
+                    } else {
+                        scanner.nextLine(); // Clear the newline left by nextInt()
+                        break;
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Input tidak valid. Harap masukkan angka.");
                     scanner.nextLine(); // Clear the invalid input
+                } catch (InvalidIndexException e) {
+                    System.out.println(e.getMessage());
                 }
             }
             
