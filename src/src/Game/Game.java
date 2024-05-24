@@ -18,13 +18,29 @@ public class Game {
     boolean joever = false ;
 
     //constructor
+    // public Game(){
+    //     this.gameTimer = new GameTimer();
+    //     this.map = new Map(gameTimer);
+    //     this.sun = new Sun(gameTimer);
+    //     this.deck = new Deck(map);
+    //     this.inventory = new Inventory(deck);
+    //     this.gameLogic = new GameLogic(this, gameTimer);
+    //     this.joever = false;
+    // }
+
     public Game(){
+        initializeGame();
+    }
+
+    // Initialize or reset the game state
+    private void initializeGame() {
         this.gameTimer = new GameTimer();
         this.map = new Map(gameTimer);
         this.sun = new Sun(gameTimer);
         this.deck = new Deck(map);
         this.inventory = new Inventory(deck);
         this.gameLogic = new GameLogic(this, gameTimer);
+        this.joever = false;
     }
 
     //getter
@@ -67,6 +83,9 @@ public class Game {
 
 
     public void start(Scanner scanner) throws Exception {
+
+        initializeGame();
+        
         while (!(inventory.getDeck().isDeckFull())) {
             inventory.showInventory();
             System.out.println("Masukkan angka tanaman untuk dimasukkan ke Deck: ");

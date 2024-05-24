@@ -155,20 +155,23 @@ public class Deck {
                             sun.decreaseSunAmount(lilypad.getPlant().getCost());
                             plant.setLastPlantedTime();
                         } else {
-                            throw new Exception("Sun tidak mencukupi") ;
+                            throw new Exception("Sun tidak mencukupi!") ;
+                        }
+                        if (plant instanceof Lilypad) {
+                            throw new Exception("Tidak bisa menanam Lilypad di atas Lilypad!");
                         }
                 }   else if (water.getLilypad() != null && water.getLilypad().getPlant() != null ){ // Sudah ada tanaman di lilypad
-                        throw new Exception("Sudah ada tanaman di Lilypad");
+                        throw new Exception("Sudah ada tanaman di Lilypad!");
                 }
                     else if (water.getLilypad() == null && !(plant instanceof Lilypad)) { // Ga ada Lilypad jadi ga bisa tanam 
-                        throw new Exception("Tidak bisa tanam, tidak ada Lilypad");
+                        throw new Exception("Tidak bisa tanam, tidak ada Lilypad!");
                     }
                 }
             //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
              else {
                 throw new Exception("Tidak bisa tanam di sini.");
             }
-        } else if (! plant.isReady()) {
+        } else if (!plant.isReady()) {
             throw new Exception("Waktu cooldown belum selesai.");
         } 
          else {

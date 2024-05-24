@@ -144,16 +144,16 @@ class MapMover {
 }
 
 public class Map implements TimeObserver {
-    public static final String RESET = "\u001B[0m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PINK = "\u001B[35m";
-    public static final String BROWN = "\u001B[33m";
     private final int length = 11;
     private final int width = 6;
     private List<List<Tile>> map;
     private Random random;
     private long lastSpawnTime = 0;
+    public static final String RESET = "\u001B[0m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PINK = "\u001B[35m";
+    public static final String BROWN = "\u001B[33m";
 
     public Map(GameTimer gameTimer) {
         map = new ArrayList<>();
