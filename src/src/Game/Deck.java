@@ -179,7 +179,7 @@ public class Deck {
 
     public void gali(int x, int y) throws Exception{
         if (x >= 0 && x < 11 && y >= 0 && y < 6) {
-            Tile target = map.get(x).get(y);
+            Tile target = map.get(y).get(x);
             Plant plant;
             if (target instanceof  GroundTile) {
                 GroundTile ground = (GroundTile) target;
