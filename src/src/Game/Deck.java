@@ -1,7 +1,17 @@
 package src.Game;
 
 import java.util.List;
+
+import src.Exception.CantPlantException;
+import src.Exception.CantPlantLilypadException;
+import src.Exception.CooldownNotDoneException;
+import src.Exception.InvalidCoordinateException;
 import src.Exception.InvalidIndexException;
+import src.Exception.NoLilypadException;
+import src.Exception.NoPlantToDigException;
+import src.Exception.NotEnoughSunException;
+import src.Exception.PlantAlreadyInLilypadException;
+import src.Exception.TileFullException;
 import src.Plant;
 import src.Plants.*;
 import src.Tile;
@@ -128,10 +138,9 @@ public class Deck {
                     sun.decreaseSunAmount(plant.getCost());
                     plant.setLastPlantedTime();
                 } else if (ground.getPlant() == null && sun.getSun() < plant.getCost()) {
-                    throw new Exception ("Sun tidak mencukupi") ;
-                }                    
-                    else {
-                    throw new Exception("Tile sudah ditempati.");
+                    throw new NotEnoughSunException();
+                } else {
+                    throw new TileFullException();
                 }
             }   
             else if (target instanceof WaterTile) {
@@ -146,36 +155,36 @@ public class Deck {
                         plant.setLastPlantedTime();
                     }
                     else {
-                        throw new Exception("Sun tidak mencukupi") ;
+                        throw new NotEnoughSunException();
                     }
                 } else if (water.getLilypad() != null && water.getLilypad().getPlant() == null) { // Sudah ada lilypad di tile target dan tanaman di lilypad kosong
                         Lilypad lilypad = (Lilypad) water.getLilypad();
+                        if (plant instanceof Lilypad) {
+                            throw new CantPlantLilypadException();
+                        }
                         if (sun.getSun() >= plant.getCost()) {
                             lilypad.addPlant(plant);
                             sun.decreaseSunAmount(lilypad.getPlant().getCost());
                             plant.setLastPlantedTime();
                         } else {
-                            throw new Exception("Sun tidak mencukupi!") ;
-                        }
-                        if (plant instanceof Lilypad) {
-                            throw new Exception("Tidak bisa menanam Lilypad di atas Lilypad!");
+                            throw new NotEnoughSunException();
                         }
                 }   else if (water.getLilypad() != null && water.getLilypad().getPlant() != null ){ // Sudah ada tanaman di lilypad
-                        throw new Exception("Sudah ada tanaman di Lilypad!");
+                        throw new PlantAlreadyInLilypadException();
                 }
                     else if (water.getLilypad() == null && !(plant instanceof Lilypad)) { // Ga ada Lilypad jadi ga bisa tanam 
-                        throw new Exception("Tidak bisa tanam, tidak ada Lilypad!");
+                        throw new NoLilypadException();
                     }
                 }
             //    System.out.println(plant.getName() + " ditanam di (" + x + ", " + y + ")");
              else {
-                throw new Exception("Tidak bisa tanam di sini.");
+                throw new CantPlantException();
             }
         } else if (!plant.isReady()) {
-            throw new Exception("Waktu cooldown belum selesai.");
+            throw new CooldownNotDoneException();
         } 
          else {
-            throw new Exception("Koordinat tidak valid.");
+            throw new InvalidCoordinateException();
         }
     }
     
@@ -191,7 +200,7 @@ public class Deck {
                     ground.removePlant();
                     System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
                 } else {
-                    throw new Exception("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                    throw new NoPlantToDigException(x, y);
                 }                
             } else if (target instanceof WaterTile) {
                 WaterTile water = (WaterTile) target;
@@ -200,11 +209,11 @@ public class Deck {
                     water.removeLilypad();
                     System.out.println("Tanaman digali dari (" + x + ", " + y + ")");
                 } else {
-                    throw new Exception("Tidak ada tanaman yang bisa digali dari (" + x + ", " + y + ")");
+                    throw new NoPlantToDigException(x, y);
                 }                
             }
         } else {
-            throw new Exception("Invalid coordinates (" + x + ", " + y + ")");
+            throw new InvalidCoordinateException();
         }
     }
 
