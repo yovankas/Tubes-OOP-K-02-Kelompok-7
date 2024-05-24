@@ -1,6 +1,7 @@
 package src.Game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import src.Exception.FullDeckException;
 import src.Exception.InvalidIndexException;
@@ -125,20 +126,49 @@ public class Inventory {
         }
     }
 
-    public void changeDeck() throws InvalidIndexException, PlantAlreadyInDeckException {
-        Scanner scanner = new Scanner(System.in);
+    public void changeDeck(Scanner scanner) throws InvalidIndexException, PlantAlreadyInDeckException {
+        // Scanner scanner = new Scanner(System.in);
         boolean stillChange = true;
         while (stillChange) {
             System.out.println();
             getDeck().showDeck();
-            System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
-            int deckIndex = scanner.nextInt();
-            scanner.nextLine(); // Clear the newline left by nextInt()
+            // System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
+            // int deckIndex = scanner.nextInt();
+            // scanner.nextLine(); // Clear the newline left by nextInt()
+            
+            // showInventory();
+            // System.out.println("Masukkan indeks tanaman di Inventory yang ingin dimasukkan: ");
+            // int inventoryIndex = scanner.nextInt();
+            // scanner.nextLine(); // Clear the newline left by nextInt()
+
+            int deckIndex = -1;
+            int inventoryIndex = -1;
+            
+            while (true) {
+                try {
+                    System.out.println("Masukkan indeks tanaman di Deck yang ingin dihapus: ");
+                    deckIndex = scanner.nextInt();
+                    scanner.nextLine(); // Clear the newline left by nextInt()
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Input tidak valid. Harap masukkan angka.");
+                    scanner.nextLine(); // Clear the invalid input
+                }
+            }
             
             showInventory();
-            System.out.println("Masukkan indeks tanaman di Inventory yang ingin dimasukkan: ");
-            int inventoryIndex = scanner.nextInt();
-            scanner.nextLine(); // Clear the newline left by nextInt()
+            
+            while (true) {
+                try {
+                    System.out.println("Masukkan indeks tanaman di Inventory yang ingin dimasukkan: ");
+                    inventoryIndex = scanner.nextInt();
+                    scanner.nextLine(); // Clear the newline left by nextInt()
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Input tidak valid. Harap masukkan angka.");
+                    scanner.nextLine(); // Clear the invalid input
+                }
+            }
 
             try {
                 if (deckIndex < 1 || deckIndex > deck.getDeck().length) {
@@ -168,16 +198,26 @@ public class Inventory {
             } catch (PlantAlreadyInDeckException e) {
                 System.out.println( e.getMessage());
             }
-            System.out.println("Apakah masih ingin mengganti Deck? (Y/N)");
-            String stillChangeStr = scanner.nextLine();
-            if (stillChangeStr.equals("N")) {
-                stillChange = false;
-                break;
+            while (true) {
+                System.out.println("Apakah masih ingin mengganti Deck? (Y/N)");
+                String stillChangeStr = scanner.nextLine();
+                if (stillChangeStr.equalsIgnoreCase("N")) {
+                    stillChange = false;
+                    break;
+                } else if (stillChangeStr.equalsIgnoreCase("Y")) {
+                    break;
+                } else {
+                    System.out.println("Input tidak valid. Harap masukkan Y/N.");
+                }
+            }
+            // System.out.println("Apakah masih ingin mengganti Deck? (Y/N)");
+            // String stillChangeStr = scanner.nextLine();
+            // if (stillChangeStr.equals("N")) {
+            //     stillChange = false;
             }
         }
 
+        // scanner.close();
     }
 
 
-
-}

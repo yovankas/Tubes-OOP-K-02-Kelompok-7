@@ -88,7 +88,7 @@ public class Game {
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("Y")) {
                 try {
-                    inventory.changeDeck();
+                    inventory.changeDeck(scanner);
                 } catch (InvalidIndexException | PlantAlreadyInDeckException e) {
                     System.out.println("Kesalahan saat mengganti Deck: " + e.getMessage());
                 }
